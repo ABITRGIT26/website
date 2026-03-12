@@ -8,9 +8,11 @@ import StatsCounter from './components/StatsCounter';
 import EventCard from './components/EventCard';
 // import ProjectCard from './components/ProjectCard';
 import MentorCard from './components/MentorCard';
+import TeamCard from './components/TeamCard';
 import { events } from './data/events';
 // import { featuredProjects } from './data/projects';
-import { mentors } from './data/team';
+import { mentors, core2526 } from './data/team';
+import { SparklesText } from '../components/ui/sparkles-text';
 
 const AnimatedBackground = dynamic(() => import('./components/AnimatedBackground'), { ssr: false });
 
@@ -108,9 +110,13 @@ export default function HomeClient() {
                             color: 'white',
                         }}
                     >
-                        <span className="gradient-text">
+                        <SparklesText 
+                            colors={{ first: "#FF6A00", second: "#F97316" }}
+                            sparklesCount={12}
+                            className="gradient-text m-0 p-0 text-[inherit] leading-[inherit] inline-block font-[inherit]"
+                        >
                             DREAM BIG
-                        </span>
+                        </SparklesText>
                         <br />
                         Build the Future.
                     </motion.h1>
@@ -356,6 +362,31 @@ export default function HomeClient() {
                                 Meet the Team <ArrowRight size={16} />
                             </motion.button>
                         </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── LEADERSHIP & CORE TEAM ─── */}
+            <section style={{ padding: '80px 24px', background: 'rgba(255,255,255,0.015)' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+                        <span className="badge" style={{ marginBottom: '16px', display: 'inline-flex' }}>
+                            Execution
+                        </span>
+                        <h2 style={{ fontFamily: 'var(--font-space-grotesk, Space Grotesk, sans-serif)', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, color: 'white', letterSpacing: '-0.02em', marginBottom: '8px' }}>
+                            Core 2025-2026
+                        </h2>
+                        <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '15px' }}>Leadership · Execution · Excellence</p>
+                    </div>
+
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 1fr)',
+                        gap: '24px',
+                    }} className="team-grid">
+                        {core2526.map((member, i) => (
+                            <TeamCard key={member.name} member={member} index={i} />
+                        ))}
                     </div>
                 </div>
             </section>
@@ -667,12 +698,14 @@ export default function HomeClient() {
         @media (max-width: 900px) {
           .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .mentors-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .events-grid { grid-template-columns: 1fr 1fr !important; }
           .projects-grid { grid-template-columns: 1fr 1fr !important; }
           .testimonials-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 640px) {
           .mentors-grid { grid-template-columns: 1fr !important; }
+          .team-grid { grid-template-columns: 1fr !important; }
           .events-grid { grid-template-columns: 1fr !important; }
           .projects-grid { grid-template-columns: 1fr !important; }
         }

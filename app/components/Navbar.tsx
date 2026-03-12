@@ -32,6 +32,8 @@ export default function Navbar() {
         setMobileOpen(false);
     }, [pathname]);
 
+    if (pathname?.startsWith('/sharkathon')) return null;
+
     return (
         <>
             <motion.nav
@@ -114,7 +116,25 @@ export default function Navbar() {
 
                     {/* CTA */}
                     <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                        <Link href="/join" style={{ textDecoration: 'none' }} className="nav-cta">
+                        <Link href="/sharkathon" style={{ textDecoration: 'none' }} className="nav-cta">
+                            <span style={{
+                                background: 'transparent',
+                                border: '1px solid #FF6A00',
+                                color: '#FF6A00',
+                                padding: '8px 16px',
+                                borderRadius: '10px',
+                                fontSize: '14px',
+                                fontWeight: 600,
+                                fontFamily: 'var(--font-space-grotesk, Space Grotesk, sans-serif)',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                transition: 'all 0.2s ease',
+                            }}>
+                                <Zap size={14} /> Sharkathon
+                            </span>
+                        </Link>
+                        <Link href="/join" style={{ textDecoration: 'none' }} className="nav-cta hidden sm:inline-flex">
                             <span style={{
                                 background: 'linear-gradient(135deg, #FF6A00, #C2410C)',
                                 color: 'white',

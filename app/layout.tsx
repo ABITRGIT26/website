@@ -67,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(spaceGrotesk.variable, inter.variable, playfair.variable, "font-sans", geist.variable)}>
-      <body>
+      <body className="noise">
         <Navbar />
         <main>{children}</main>
         <Footer />

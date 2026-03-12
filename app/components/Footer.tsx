@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Twitter, Linkedin, Github, Instagram, Zap, Mail, MapPin } from 'lucide-react';
 
 const footerLinks = {
@@ -32,6 +33,10 @@ const socials = [
 ];
 
 export default function Footer() {
+    const pathname = usePathname();
+
+    if (pathname?.startsWith('/sharkathon')) return null;
+
     return (
         <footer style={{
             background: 'linear-gradient(180deg, var(--navy) 0%, #080D1A 100%)',
