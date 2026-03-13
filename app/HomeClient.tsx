@@ -144,13 +144,13 @@ export default function HomeClient() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
                     >
-                        <Link href="/events" style={{ textDecoration: 'none' }}>
+                        <Link href="/sharkathon" style={{ textDecoration: 'none' }}>
                             <motion.button
                                 whileHover={{ scale: 1.04, boxShadow: '0 8px 30px rgba(255, 106, 0, 0.4)' }}
                                 whileTap={{ scale: 0.98 }}
                                 className="btn-primary"
                             >
-                                Explore Events <ArrowRight size={16} />
+                                Register for Sharkathon <ArrowRight size={16} />
                             </motion.button>
                         </Link>
                         <Link href="/join" style={{ textDecoration: 'none' }}>
@@ -669,14 +669,14 @@ export default function HomeClient() {
                             Join a community of curious minds, builders, and innovators. Your journey in technology starts here.
                         </p>
                         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <Link href="/join" style={{ textDecoration: 'none' }}>
+                            <Link href="/sharkathon" style={{ textDecoration: 'none' }}>
                                 <motion.button
                                     whileHover={{ scale: 1.04, boxShadow: '0 8px 30px rgba(255, 106, 0, 0.5)' }}
                                     whileTap={{ scale: 0.98 }}
                                     className="btn-primary"
                                     style={{ fontSize: '16px', padding: '16px 32px' }}
                                 >
-                                    Join ABIT Today <ArrowRight size={18} />
+                                    Register for Sharkathon <ArrowRight size={18} />
                                 </motion.button>
                             </Link>
                             <Link href="/events" style={{ textDecoration: 'none' }}>

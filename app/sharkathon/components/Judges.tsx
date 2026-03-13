@@ -4,22 +4,22 @@ import { motion } from 'framer-motion';
 
 const judges = [
     {
-        name: 'Coming Soon',
-        role: 'Venture Capitalist',
-        company: 'Top Tier VC',
-        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80'
+        name: 'Devang Raja',
+        role: 'Founder',
+        company: 'Venture Wolf',
+        image: '/1747300829053.jpeg'
     },
     {
-        name: 'Coming Soon',
-        role: 'Tech Lead / Founder',
-        company: 'Unicorn Startup',
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80'
+        name: 'Sriram Sastrigal',
+        role: 'Director',
+        company: 'Magnivia Ventures',
+        image: '/sriram.jpeg'
     },
     {
-        name: 'Coming Soon',
-        role: 'Angel Investor',
-        company: 'Angel Network',
-        image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80'
+        name: 'Nikhil Parmar',
+        role: 'Founder',
+        company: 'Impactful Pitch',
+        image: '/NikhilParmar.webp'
     }
 ];
 
