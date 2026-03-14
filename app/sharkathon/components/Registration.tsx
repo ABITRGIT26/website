@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Rocket, Loader2, CheckCircle } from 'lucide-react';
-import { useState } from 'react';
+import { Rocket, Loader2, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function Registration() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -27,8 +27,26 @@ export default function Registration() {
         teamLead: '',
         member2: '',
         member3: '',
-        member4: ''
+        member4: '',
+        referral: '',
+        teamId: '',
     });
+
+    useEffect(() => {
+        const generateTeamId = () => {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 4; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return `SHARK-ABIT-${result}`;
+        };
+
+        setFormData(prev => ({
+            ...prev,
+            teamId: generateTeamId()
+        }));
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -92,13 +110,13 @@ export default function Registration() {
                     }}
                 >
                     <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <CheckCircle size={40} color="#10B981" />
+                        <CheckCircle2 size={40} color="#10B981" />
                     </div>
                     <h2 style={{ color: 'white', fontSize: '32px', fontWeight: 800, fontFamily: 'var(--font-space-grotesk)' }}>Application Submitted!</h2>
                     <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '18px', lineHeight: 1.6 }}>
                         Thank you for entering the tank. Our team will review your application and get back to you soon.
                     </p>
-                    <button 
+                    <button
                         onClick={() => { setStatus('idle'); setFormData({ ...formData, startupName: '', pitch: '', pitchLink: '' }); }}
                         style={{
                             background: 'transparent',
@@ -155,62 +173,62 @@ export default function Registration() {
                         pointerEvents: status === 'loading' ? 'none' : 'auto'
                     }}
                 >
-                    <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between', 
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
                         marginBottom: '40px',
                         position: 'relative',
                         padding: '0 10px'
                     }}>
-                        <div style={{ 
-                            position: 'absolute', 
-                            top: '15px', 
-                            left: '0', 
-                            right: '0', 
-                            height: '2px', 
-                            background: 'rgba(255,255,255,0.05)', 
-                            zIndex: 1 
+                        <div style={{
+                            position: 'absolute',
+                            top: '15px',
+                            left: '0',
+                            right: '0',
+                            height: '2px',
+                            background: 'rgba(255,255,255,0.05)',
+                            zIndex: 1
                         }} />
-                        <div style={{ 
-                            position: 'absolute', 
-                            top: '15px', 
-                            left: '0', 
-                            width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`, 
-                            height: '2px', 
-                            background: 'linear-gradient(90deg, #FF0000, #FF6A00)', 
+                        <div style={{
+                            position: 'absolute',
+                            top: '15px',
+                            left: '0',
+                            width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
+                            height: '2px',
+                            background: 'linear-gradient(90deg, #FF0000, #FF6A00)',
                             zIndex: 1,
                             transition: 'all 0.3s ease'
                         }} />
-                        
+
                         {steps.map((step) => (
-                            <div key={step.id} style={{ 
-                                position: 'relative', 
-                                zIndex: 2, 
-                                display: 'flex', 
-                                flexDirection: 'column', 
-                                alignItems: 'center', 
-                                gap: '8px' 
+                            <div key={step.id} style={{
+                                position: 'relative',
+                                zIndex: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '8px'
                             }}>
-                                <div style={{ 
-                                    width: '32px', 
-                                    height: '32px', 
-                                    borderRadius: '50%', 
-                                    background: currentStep >= step.id ? 'linear-gradient(135deg, #FF0000, #FF6A00)' : '#1A1A1A', 
+                                <div style={{
+                                    width: '32px',
+                                    height: '32px',
+                                    borderRadius: '50%',
+                                    background: currentStep >= step.id ? 'linear-gradient(135deg, #FF0000, #FF6A00)' : '#1A1A1A',
                                     border: '1px solid rgba(255,255,255,0.1)',
-                                    display: 'flex', 
-                                    alignItems: 'center', 
-                                    justifyContent: 'center', 
-                                    fontSize: '14px', 
-                                    fontWeight: 700, 
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '14px',
+                                    fontWeight: 700,
                                     color: 'white',
                                     transition: 'all 0.3s ease',
                                     boxShadow: currentStep === step.id ? '0 0 15px rgba(255, 0, 0, 0.3)' : 'none'
                                 }}>
                                     {currentStep > step.id ? '✓' : step.id}
                                 </div>
-                                <span style={{ 
-                                    fontSize: '10px', 
-                                    color: currentStep >= step.id ? 'white' : 'rgba(255,255,255,0.3)', 
+                                <span style={{
+                                    fontSize: '10px',
+                                    color: currentStep >= step.id ? 'white' : 'rgba(255,255,255,0.3)',
                                     fontWeight: 600,
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.05em',
@@ -225,27 +243,27 @@ export default function Registration() {
                     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
                         {/* Step 1: Basic Info */}
                         {currentStep === 1 && (
-                            <motion.div 
-                                initial={{ opacity: 0, x: 20 }} 
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
                             >
                                 <div style={{ display: 'grid', gridTemplateColumns: 'grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }} className="responsive-grid">
                                     <div>
                                         <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Startup Name</label>
-                                        <input 
+                                        <input
                                             name="startupName"
                                             value={formData.startupName}
                                             onChange={handleChange}
                                             required
-                                            type="text" 
+                                            type="text"
                                             placeholder="Acme Corp"
                                             style={inputStyle}
                                         />
                                     </div>
                                     <div>
                                         <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Industry / Track</label>
-                                        <select 
+                                        <select
                                             name="industry"
                                             value={formData.industry}
                                             onChange={handleChange}
@@ -264,24 +282,24 @@ export default function Registration() {
                                 <div style={{ display: 'grid', gridTemplateColumns: 'grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }} className="responsive-grid">
                                     <div>
                                         <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Email Address</label>
-                                        <input 
+                                        <input
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            type="email" 
+                                            type="email"
                                             placeholder="you@example.com"
                                             style={inputStyle}
                                         />
                                     </div>
                                     <div>
                                         <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Phone Number</label>
-                                        <input 
+                                        <input
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
                                             required
-                                            type="tel" 
+                                            type="tel"
                                             placeholder="+91 XXXXX XXXXX"
                                             style={inputStyle}
                                         />
@@ -290,7 +308,7 @@ export default function Registration() {
 
                                 <div>
                                     <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Team Size</label>
-                                    <select 
+                                    <select
                                         name="teamSize"
                                         value={formData.teamSize}
                                         onChange={handleChange}
@@ -307,27 +325,27 @@ export default function Registration() {
 
                         {/* Step 2: Team Details */}
                         {currentStep === 2 && (
-                            <motion.div 
-                                initial={{ opacity: 0, x: 20 }} 
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
                             >
                                 <div style={{ display: 'grid', gridTemplateColumns: 'grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }} className="responsive-grid">
                                     <div>
                                         <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>College Name</label>
-                                        <input 
+                                        <input
                                             name="collegeName"
                                             value={formData.collegeName}
                                             onChange={handleChange}
                                             required
-                                            type="text" 
+                                            type="text"
                                             placeholder="e.g. ABIT"
                                             style={inputStyle}
                                         />
                                     </div>
                                     <div>
                                         <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Engineering Year</label>
-                                        <select 
+                                        <select
                                             name="engYear"
                                             value={formData.engYear}
                                             onChange={handleChange}
@@ -344,12 +362,12 @@ export default function Registration() {
                                 <div style={{ display: 'grid', gridTemplateColumns: 'grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }} className="responsive-grid">
                                     <div>
                                         <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Team Lead Name</label>
-                                        <input 
+                                        <input
                                             name="teamLead"
                                             value={formData.teamLead}
                                             onChange={handleChange}
                                             required
-                                            type="text" 
+                                            type="text"
                                             placeholder="Member 1 (Lead)"
                                             style={inputStyle}
                                         />
@@ -357,12 +375,12 @@ export default function Registration() {
                                     {teamSize >= 2 && (
                                         <div>
                                             <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Team Member 2 Name</label>
-                                            <input 
+                                            <input
                                                 name="member2"
                                                 value={formData.member2}
                                                 onChange={handleChange}
                                                 required
-                                                type="text" 
+                                                type="text"
                                                 placeholder="Member 2"
                                                 style={inputStyle}
                                             />
@@ -371,12 +389,12 @@ export default function Registration() {
                                     {teamSize >= 3 && (
                                         <div>
                                             <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Team Member 3 Name</label>
-                                            <input 
+                                            <input
                                                 name="member3"
                                                 value={formData.member3}
                                                 onChange={handleChange}
                                                 required
-                                                type="text" 
+                                                type="text"
                                                 placeholder="Member 3"
                                                 style={inputStyle}
                                             />
@@ -385,12 +403,12 @@ export default function Registration() {
                                     {teamSize >= 4 && (
                                         <div>
                                             <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Team Member 4 Name</label>
-                                            <input 
+                                            <input
                                                 name="member4"
                                                 value={formData.member4}
                                                 onChange={handleChange}
                                                 required
-                                                type="text" 
+                                                type="text"
                                                 placeholder="Member 4"
                                                 style={inputStyle}
                                             />
@@ -402,19 +420,19 @@ export default function Registration() {
 
                         {/* Step 3: Project Pitch */}
                         {currentStep === 3 && (
-                            <motion.div 
-                                initial={{ opacity: 0, x: 20 }} 
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
                             >
                                 <div>
                                     <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>One-line Pitch</label>
-                                    <input 
+                                    <input
                                         name="pitch"
                                         value={formData.pitch}
                                         onChange={handleChange}
                                         required
-                                        type="text" 
+                                        type="text"
                                         placeholder="We build X for Y using Z"
                                         style={inputStyle}
                                     />
@@ -450,8 +468,8 @@ export default function Registration() {
 
                         {/* Step 4: Market & Strategy */}
                         {currentStep === 4 && (
-                            <motion.div 
-                                initial={{ opacity: 0, x: 20 }} 
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
                             >
@@ -498,25 +516,56 @@ export default function Registration() {
 
                         {/* Step 5: Final Submission */}
                         {currentStep === 5 && (
-                            <motion.div 
-                                initial={{ opacity: 0, x: 20 }} 
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
                             >
+                                <div style={{
+                                    background: 'rgba(255, 255, 255, 0.03)',
+                                    border: '1px dashed rgba(255, 255, 255, 0.1)',
+                                    borderRadius: '12px',
+                                    padding: '20px',
+                                    textAlign: 'center'
+                                }}>
+                                    <span style={{ display: 'block', fontSize: '12px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '1px' }}>Your Unique Team ID</span>
+                                    <span style={{ fontSize: '24px', fontWeight: 800, color: '#FF4D00', letterSpacing: '2px' }}>{formData.teamId}</span>
+                                    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', marginTop: '8px' }}>Please save this ID for future reference.</p>
+                                </div>
+
                                 <div>
                                     <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>Pitch Deck / Video (Google Drive Link)</label>
-                                    <input 
+                                    <input
                                         name="pitchLink"
                                         value={formData.pitchLink}
                                         onChange={handleChange}
                                         required
-                                        type="url" 
+                                        type="url"
                                         placeholder="https://drive.google.com/share/..."
                                         style={inputStyle}
                                     />
                                     <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px', marginTop: '8px' }}>
                                         Ensure sharing is set to "Anyone with link".
                                     </p>
+                                </div>
+
+                                <div>
+                                    <label style={{ display: 'block', color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '8px', fontWeight: 500 }}>How did you hear about us?</label>
+                                    <select
+                                        name="referral"
+                                        value={formData.referral}
+                                        onChange={handleChange}
+                                        required
+                                        style={inputStyle}
+                                    >
+                                        <option value="">Select an option</option>
+                                        <option value="instagram">Instagram</option>
+                                        <option value="linkedin">LinkedIn</option>
+                                        <option value="whatsapp">WhatsApp / Community</option>
+                                        <option value="StartupNews.fyi">StartupNews.fyi</option>
+                                        <option value="friends">Friends / Referral</option>
+                                        <option value="other">Other</option>
+                                    </select>
                                 </div>
 
                                 <div>
@@ -540,9 +589,9 @@ export default function Registration() {
                         )}
 
                         {/* Navigation Buttons */}
-                        <div style={{ 
-                            display: 'flex', 
-                            gap: '16px', 
+                        <div style={{
+                            display: 'flex',
+                            gap: '16px',
                             marginTop: '24px',
                             flexDirection: 'row' // Explicitly row, layout handled by responsive CSS
                         }} className="navigation-buttons">
@@ -568,7 +617,7 @@ export default function Registration() {
                                     Previous
                                 </button>
                             )}
-                            
+
                             {currentStep < totalSteps ? (
                                 <button
                                     type="button"
@@ -626,7 +675,7 @@ export default function Registration() {
                     </form>
                 </motion.div>
             </div>
-            
+
             <style jsx global>{`
                 .animate-spin {
                     animation: spin 1s linear infinite;
