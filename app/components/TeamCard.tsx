@@ -8,6 +8,7 @@ import type { TeamMember } from '../data/team';
 interface TeamCardProps {
     member: TeamMember;
     index?: number;
+    isHighlighted?: boolean;
 }
 
 const teamColorMap: Record<string, string> = {
@@ -18,7 +19,7 @@ const teamColorMap: Record<string, string> = {
     media: '#EF4444',
 };
 
-export default function TeamCard({ member, index = 0 }: TeamCardProps) {
+export default function TeamCard({ member, index = 0, isHighlighted = false }: TeamCardProps) {
     const color = teamColorMap[member.team] || '#FFFFFF';
     return (
         <motion.div
@@ -28,10 +29,10 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
             transition={{ delay: index * 0.08, duration: 0.5 }}
             whileHover={{ y: -6, borderColor: '#FF6A00', boxShadow: '0 10px 30px rgba(255, 106, 0, 0.15)' }}
             style={{
-                background: '#111111',
-                border: '1px solid rgba(255, 106, 0, 0.2)',
-                borderRadius: '20px',
-                padding: '28px 24px',
+                background: isHighlighted ? 'rgba(255, 106, 0, 0.05)' : '#111111',
+                border: isHighlighted ? '2px solid #FF6A00' : '1px solid rgba(255, 106, 0, 0.2)',
+                borderRadius: '24px',
+                padding: isHighlighted ? '48px 32px' : '28px 24px',
                 textAlign: 'center',
                 transition: 'all 0.3s ease',
                 position: 'relative',
@@ -69,8 +70,8 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
 
             {/* Avatar */}
             <div style={{
-                width: 80,
-                height: 80,
+                width: isHighlighted ? 120 : 80,
+                height: isHighlighted ? 120 : 80,
                 borderRadius: '50%',
                 background: `linear-gradient(135deg, ${color}30, ${color}10)`,
                 border: `2px solid ${color}40`,
@@ -87,10 +88,10 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
                         alt={member.name}
                         fill
                         style={{ objectFit: 'cover' }}
-                        sizes="80px"
+                        sizes={isHighlighted ? "120px" : "80px"}
                     />
                 ) : (
-                    <User size={36} color={color} />
+                    <User size={isHighlighted ? 48 : 36} color={color} />
                 )}
             </div>
 
@@ -98,8 +99,8 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
             <div>
                 <h3 style={{
                     fontFamily: 'var(--font-space-grotesk, Space Grotesk, sans-serif)',
-                    fontSize: '17px',
-                    fontWeight: 700,
+                    fontSize: isHighlighted ? '24px' : '17px',
+                    fontWeight: 800,
                     color: 'white',
                     letterSpacing: '-0.01em',
                     marginBottom: '4px',
@@ -108,8 +109,8 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
                 </h3>
                 <p style={{
                     color: color,
-                    fontSize: '13px',
-                    fontWeight: 600,
+                    fontSize: isHighlighted ? '16px' : '13px',
+                    fontWeight: 700,
                     letterSpacing: '0.02em',
                 }}>
                     {member.role}
@@ -119,10 +120,11 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
             {/* Bio */}
             {member.bio && (
                 <p style={{
-                    color: 'rgba(255,255,255,0.45)',
-                    fontSize: '13px',
+                    color: 'rgba(255,255,255,0.6)',
+                    fontSize: isHighlighted ? '15px' : '13px',
                     lineHeight: 1.6,
                     textAlign: 'center',
+                    maxWidth: isHighlighted ? '400px' : 'auto',
                 }}>
                     {member.bio}
                 </p>

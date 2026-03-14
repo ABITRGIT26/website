@@ -23,7 +23,7 @@ export default function SharkathonFooter() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                             <p>+91 70589 34779</p>
                             <p>+91 93215 19165</p>
-                            <p>contact@abit.rgit.ac.in</p>
+                            <p>abitrgit.it@gmail.com</p>
                         </div>
                     </div>
                     <div>

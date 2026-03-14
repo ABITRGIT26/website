@@ -97,7 +97,7 @@ export default function JoinPage() {
                                     <h2 style={{ fontFamily: 'var(--font-space-grotesk, Space Grotesk, sans-serif)', fontSize: '26px', fontWeight: 700, color: 'white', letterSpacing: '-0.02em', marginBottom: '32px' }}>Application Form</h2>
                                     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="form-grid">
-                                            {[{ key: 'name', label: 'Full Name', placeholder: 'Arjun Sharma', type: 'text' }, { key: 'email', label: 'College Email', placeholder: 'you@rgit.ac.in', type: 'email' }, { key: 'phone', label: 'Phone', placeholder: '+91 XXXXX XXXXX', type: 'tel' }].map(({ key, label, placeholder, type }) => (
+                                            {[{ key: 'name', label: 'Full Name', placeholder: 'Arjun Sharma', type: 'text' }, { key: 'email', label: 'College Email', placeholder: 'you@gmail.com', type: 'email' }, { key: 'phone', label: 'Phone', placeholder: '+91 XXXXX XXXXX', type: 'tel' }].map(({ key, label, placeholder, type }) => (
                                                 <div key={key}>
                                                     <label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '13px', fontWeight: 600, marginBottom: '8px', letterSpacing: '0.02em' }}>{label}</label>
                                                     <input

@@ -136,9 +136,19 @@ export default function TeamPage() {
                                         style={{ overflow: 'hidden' }}
                                     >
                                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', paddingBottom: '20px' }} className="team-grid">
-                                            {members.map((m, i) => (
-                                                <TeamCard key={m.name} member={m} index={i} />
-                                            ))}
+                                            {members.map((m, i) => {
+                                                const isPres = id === 'core_2526' && i === 0;
+                                                return (
+                                                    <div key={m.name} style={{ 
+                                                        gridColumn: isPres ? '1 / -1' : 'span 1',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        width: '100%'
+                                                    }}>
+                                                        <TeamCard member={m} index={i} isHighlighted={isPres} />
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </motion.div>
                                 )}

@@ -109,7 +109,7 @@ export default function Footer() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.5)', fontSize: '13px' }}>
                                 <Mail size={14} color="#A3A3A3" />
-                                <span>abit@rgit.ac.in</span>
+                                <span>abitrgit.it@gmail.com</span>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.5)', fontSize: '13px' }}>
                                 <MapPin size={14} color="#A3A3A3" />

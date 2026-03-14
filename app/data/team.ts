@@ -11,9 +11,9 @@ export interface TeamMember {
 export const team: TeamMember[] = [
     // Core 2025-2026
     { name: 'Darshan Rane', role: 'President', team: 'core_25_26', image: '/team/darshan_rane.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
+    { name: 'Divyang Pawar', role: 'Treasurer', team: 'core_25_26', image: '/team/divyang_pawar.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
     { name: 'Krishna Sharma', role: 'Managing Director', team: 'core_25_26', image: '/team/krishna_sharma.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
     { name: 'Sarthaki Jadhav', role: 'General Secretary', team: 'core_25_26', image: '/team/sarthaki_jadhav.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
-    { name: 'Divyang Pawar', role: 'Treasurer', team: 'core_25_26', image: '/team/divyang_pawar.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
     { name: 'Yash Todankar', role: 'Vice President', team: 'core_25_26', image: '/team/yash_todankar.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
     { name: 'Nishant Salekar', role: 'Joint General Secretary', team: 'core_25_26', image: '/team/nishant_salekar.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
     { name: 'Unnati Nashirkar', role: 'Joint General Secretary', team: 'core_25_26', image: '/team/unnati_nashirkar.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },

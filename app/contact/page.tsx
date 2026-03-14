@@ -108,7 +108,7 @@ export default function ContactPage() {
                                 <h3 style={{ fontFamily: 'var(--font-space-grotesk, Space Grotesk, sans-serif)', fontSize: '18px', fontWeight: 700, color: 'white', marginBottom: '20px' }}>Contact Info</h3>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                     {[
-                                        { icon: Mail, text: 'abit@rgit.ac.in', label: 'Email' },
+                                        { icon: Mail, text: 'abitrgit.it@gmail.com', label: 'Email' },
                                         { icon: Phone, text: '+91 98765 43210', label: 'Phone' },
                                         { icon: MapPin, text: 'RGIT, Versova, Andheri West, Mumbai — 400053', label: 'Address' },
                                     ].map(({ icon: Icon, text, label }) => (
