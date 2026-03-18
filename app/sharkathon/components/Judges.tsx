@@ -41,8 +41,11 @@ export default function Judges() {
                     }}>
                         Meet the Panel
                     </h2>
-                    <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '18px' }}>
+                    <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '18px', marginBottom: '8px' }}>
                         Pitch to industry leaders who can turn your vision into reality.
+                    </p>
+                    <p style={{ color: '#FF6A00', fontSize: '16px', fontWeight: 600 }}>
+                        Special thanks to Sumeet Parmar!
                     </p>
                 </div>
 
