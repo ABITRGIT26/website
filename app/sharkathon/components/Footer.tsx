@@ -53,6 +53,7 @@ export default function SharkathonFooter() {
                     gap: '16px',
                 }}>
                     <p>© {new Date().getFullYear()} ABIT RGIT. All rights reserved.</p>
+                    <p style={{ color: 'rgba(255,255,255,0.5)' }}>Special thanks to Sumeet Parmar!</p>
                 </div>
             </div>
         </footer>

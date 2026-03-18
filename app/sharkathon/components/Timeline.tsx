@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 
 const scheduleItem = [
     { date: '1st March 2026', title: 'Applications Open', description: 'Start forming teams and submit your initial startup ideas.' },
-    { date: '20th March 2026', title: 'Registration Closes', description: 'Final deadline to submit your applications and pitch decks.' },
-    { date: '21st March 2026', title: 'Shortlist Announcement', description: 'Top ideas are selected to pitch in person at the RGIT campus.' },
-    { date: '23rd – 25th March 2026', title: 'Sharkathon Event', description: 'Three days of intense building, mentoring, and the final pitch.' }
+    { date: '21st March 2026', title: 'Registration Closes', description: 'Final deadline to submit your applications and pitch decks.' },
+    { date: '22nd March 2026', title: 'Shortlist Announcement', description: 'Top ideas are selected to pitch in person at the RGIT campus.' },
+    { date: '25th March 2026', title: 'Sharkathon Event', description: 'Pitch your ideas and compete for the final prize.' }
 ];
 
 export default function Timeline() {

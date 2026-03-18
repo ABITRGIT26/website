@@ -116,6 +116,24 @@ export default function Registration() {
                     <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '18px', lineHeight: 1.6 }}>
                         Thank you for entering the tank. Our team will review your application and get back to you soon.
                     </p>
+                    <a 
+                        href="https://chat.whatsapp.com/Dsx2JxurwFvLQrPZA1tQFt?mode=hqctshi" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                            background: '#25D366',
+                            color: 'white',
+                            padding: '12px 32px',
+                            borderRadius: '12px',
+                            textDecoration: 'none',
+                            fontWeight: 700,
+                            marginTop: '12px',
+                            fontFamily: 'var(--font-inter, Inter, sans-serif)',
+                            boxShadow: '0 4px 14px rgba(37, 211, 102, 0.3)'
+                        }}
+                    >
+                        Join the official WhatsApp group for updates
+                    </a>
                     <button
                         onClick={() => { setStatus('idle'); setFormData({ ...formData, startupName: '', pitch: '', pitchLink: '' }); }}
                         style={{
@@ -677,6 +695,10 @@ export default function Registration() {
             </div>
 
             <style jsx global>{`
+                select option {
+                    background-color: #1A1A1A;
+                    color: white;
+                }
                 .animate-spin {
                     animation: spin 1s linear infinite;
                 }
