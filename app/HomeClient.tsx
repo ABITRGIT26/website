@@ -150,7 +150,7 @@ export default function HomeClient() {
                                 whileTap={{ scale: 0.98 }}
                                 className="btn-primary"
                             >
-                                Register for Sharkathon <ArrowRight size={16} />
+                                Sharkathon 2025 <ArrowRight size={16} />
                             </motion.button>
                         </Link>
                         <Link href="/join" style={{ textDecoration: 'none' }}>
@@ -676,7 +676,7 @@ export default function HomeClient() {
                                     className="btn-primary"
                                     style={{ fontSize: '16px', padding: '16px 32px' }}
                                 >
-                                    Register for Sharkathon <ArrowRight size={18} />
+                                    Sharkathon 2025 <ArrowRight size={18} />
                                 </motion.button>
                             </Link>
                             <Link href="/events" style={{ textDecoration: 'none' }}>

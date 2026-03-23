@@ -90,6 +90,59 @@ export default function Registration() {
         }
     };
 
+    const isRegistrationClosed = true;
+
+    if (isRegistrationClosed) {
+        return (
+            <section id="register" style={{ padding: '100px 24px', background: '#030101', textAlign: 'center' }}>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    style={{
+                        maxWidth: '600px',
+                        margin: '0 auto',
+                        background: 'rgba(255,255,255,0.02)',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        borderRadius: '24px',
+                        padding: '60px 40px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '24px'
+                    }}
+                >
+                    <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(255, 0, 0, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Rocket size={40} color="#FF0000" />
+                    </div>
+                    <h2 style={{ color: 'white', fontSize: '32px', fontWeight: 800, fontFamily: 'var(--font-space-grotesk)' }}>Registration Closed</h2>
+                    <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '18px', lineHeight: 1.6 }}>
+                        The tank is now closed for new entries. <br/>
+                        Shortlist will be announced on 24th March Morning. <br/>
+                        You will receive all further updates via email.
+                    </p>
+                    <a 
+                        href="https://chat.whatsapp.com/Dsx2JxurwFvLQrPZA1tQFt?mode=hqctshi" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                            background: '#25D366',
+                            color: 'white',
+                            padding: '12px 32px',
+                            borderRadius: '12px',
+                            textDecoration: 'none',
+                            fontWeight: 700,
+                            marginTop: '12px',
+                            fontFamily: 'var(--font-inter, Inter, sans-serif)',
+                            boxShadow: '0 4px 14px rgba(37, 211, 102, 0.3)'
+                        }}
+                    >
+                        Join the official WhatsApp group for updates
+                    </a>
+                </motion.div>
+            </section>
+        );
+    }
+
     if (status === 'success') {
         return (
             <section id="register" style={{ padding: '100px 24px', background: '#030101', textAlign: 'center' }}>
