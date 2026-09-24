@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Code2, BrainCircuit, RadioTower, ShieldCheck, Hammer, Shuffle,
+  Code2, BrainCircuit, Cloud, ShieldCheck, Hammer, Shuffle,
   Users, Presentation, Trophy, Music4, HeartHandshake, Wrench, ArrowRight, ArrowUpRight,
 } from 'lucide-react';
 import { useState } from 'react';
+import { problemStatements, psDomains, psDomainLabel, type PSDomainKey } from '../data/problemStatements';
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
@@ -99,7 +100,7 @@ export function EventSection() {
   return (
     <section id="event" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)' }}>
       <div style={wrap}>
-        <Head label="What is Codeastra?" title={<>Not a hackathon.<br />A pressure test<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="CodeAstra 2.0 is a 24-hour offline hackathon under Synergy 2027, bringing together students and young developers to build innovative, real-world technology solutions. Unlike a traditional hackathon, CodeAstra goes beyond the code  challenging participants not only to build, but also to adapt, collaborate and solve under pressure." />
+        <Head label="What is Codeastra?" title={<>Not a hackathon.<br />A pressure test<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="CodeAstra is a 24-hour offline hackathon under Synergy 2027, bringing together students and young developers to build innovative, real-world technology solutions. Unlike a traditional hackathon, CodeAstra goes beyond the code  challenging participants not only to build, but also to adapt, collaborate and solve under pressure." />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginTop: 48 }} className="codeastra-grid-4">
           {[
             { icon: Hammer, k: 'Build', v: 'Turn ideas into functional, real-world solutions.' },
@@ -126,7 +127,7 @@ export function DomainsSection() {
   const domains = [
     { icon: Code2, n: '01', t: 'Web & Product Development', b: 'Build functional digital products, platforms and web applications that solve real-world problems.' },
     { icon: BrainCircuit, n: '02', t: 'AI & ML', b: 'Create intelligent solutions using artificial intelligence, machine learning, generative AI, computer vision, NLP and intelligent automation.' },
-    { icon: RadioTower, n: '03', t: 'IoT & Connected Systems', b: 'Bridge the physical and digital worlds through connected devices, embedded systems, sensors, real-time data and smart systems.' },
+    { icon: Cloud, n: '03', t: 'Cloud Computing & Distributed Systems', b: 'Design scalable systems across cloud platforms, distributed architectures, microservices, load balancing, databases and resilient infrastructure.' },
     { icon: ShieldCheck, n: '04', t: 'Cybersecurity & Digital Trust', b: 'Build secure systems and explore cybersecurity, privacy, digital identity, threat detection and trusted digital infrastructure.' },
   ];
   return (
@@ -154,6 +155,63 @@ export function DomainsSection() {
   );
 }
 
+export function ProblemStatementsSection() {
+  const [active, setActive] = useState<PSDomainKey | 'all'>('all');
+  const list = active === 'all' ? problemStatements : problemStatements.filter((ps) => ps.domain === active);
+  return (
+    <section id="statements" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)', borderTop: '1px solid var(--cb-border)' }}>
+      <div style={wrap}>
+        <Head
+          label="Temporary problem statements"
+          title={<>Pick your problem<span style={{ color: 'var(--cb-accent)' }}>.</span></>}
+          hint="Twelve starting points across the four domains. Browse them here, then lock one in on the registration form. Final statements drop at launch."
+        />
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 40 }}>
+          {psDomains.map((d) => (
+            <button
+              key={d.key}
+              type="button"
+              onClick={() => setActive(d.key)}
+              style={{
+                padding: '10px 18px',
+                border: '1px solid',
+                borderColor: active === d.key ? 'var(--cb-accent)' : 'var(--cb-card-border)',
+                background: active === d.key ? 'var(--cb-accent)' : 'transparent',
+                color: active === d.key ? 'var(--cb-accent-text)' : 'var(--cb-text-muted)',
+                fontFamily: 'var(--font-utility)',
+                fontSize: 12,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+              }}
+            >
+              {d.label}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 28 }} className="codeastra-grid-2">
+          {list.map((ps, i) => (
+            <Reveal key={ps.id} delay={(i % 2) * 0.07}>
+              <div style={cardStyle}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 14 }}>
+                  <span style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--cb-accent)', textTransform: 'uppercase' }}>
+                    {ps.id.replace('-', ' ').toUpperCase()}
+                  </span>
+                  <span style={{ fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.1em', color: 'var(--cb-text-dim)', textTransform: 'uppercase', textAlign: 'right' }}>
+                    {psDomainLabel[ps.domain]}
+                  </span>
+                </div>
+                <h3 style={{ fontSize: 'clamp(1.15rem, 2.2vw, 1.5rem)', textTransform: 'uppercase', margin: '0 0 10px', lineHeight: 1.15 }}>{ps.title}</h3>
+                <p style={{ color: 'var(--cb-text-muted)', lineHeight: 1.65, fontSize: 15, margin: 0 }}>{ps.brief}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function JourneySection() {
   const journey = [
     { n: '01', t: 'Online Selection', s: 'Registration → Idea Submission → Screening → Shortlisting' },
@@ -161,7 +219,7 @@ export function JourneySection() {
     { n: '03', t: 'Build', s: 'Ideation → Development → Testing → Mentorship' },
     { n: '04', t: 'Title Sponsor Round', s: 'Challenge → Brand Integration → Innovation → Showcase' },
     { n: '05', t: 'Trial & Reward', s: 'Challenge → Adapt → Perform → Earn' },
-    { n: '06', t: 'Convergence', s: 'Collaborate → Integrate → Demonstrate (₹50,000 Prize)' },
+    { n: '06', t: 'Convergence', s: 'Collaborate → Integrate → Demonstrate (₹15,000 Prize)' },
     { n: '07', t: 'Final Build', s: 'Refine → Test → Deploy → Submit' },
     { n: '08', t: 'Final Launch (24 HR)', s: 'Live Demo → Jury Q&A → Evaluation → Results' },
   ];
@@ -229,7 +287,7 @@ export function ConvergenceSection() {
         </Reveal>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 40 }} className="codeastra-grid-3">
           {[
-            { t: '₹50,000', b: 'Convergence prize  ₹25,000 per winning team.' },
+            { t: '₹15,000', b: 'Convergence prize shared by the winning integrated teams.' },
             { t: 'Cross-domain', b: 'Forced collaboration outside your comfort stack.' },
             { t: 'Live proof', b: 'Both integrations demoed, not slideware.' },
           ].map((c, i) => (
@@ -248,10 +306,10 @@ export function ConvergenceSection() {
 
 export function PrizesSection() {
   const tiers = [
-    { p: '🥇 1st Place', a: '₹90,000', d: 'Overall winner  best across all five judging criteria.' },
-    { p: '🥈 2nd Place', a: '₹40,000', d: 'Runner-up  strongest end-to-end build and demo.' },
-    { p: '🥉 3rd Place', a: '₹20,000', d: 'Second runner-up  standout execution or innovation.' },
-    { p: '🏆 Convergence', a: '₹50,000', d: '₹25,000 per winning team  best cross-domain integration.' },
+    { p: '🥇 1st Place', a: '₹50,000', d: 'Overall winner best across all five judging criteria.' },
+    { p: '🥈 2nd Place', a: '₹30,000', d: 'Runner-up strongest end-to-end build and demo.' },
+    { p: '🥉 3rd Place', a: '₹20,000', d: 'Second runner-up standout execution or innovation.' },
+    { p: '🏆 Convergence', a: '₹15,000', d: 'Best cross-domain integration shared by winning teams.' },
   ];
   const criteria = [
     { k: 'Technical Execution', w: 25 }, { k: 'Problem Understanding', w: 20 },
@@ -261,7 +319,7 @@ export function PrizesSection() {
   return (
     <section id="prizes" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)' }}>
       <div style={wrap}>
-        <Head label="Judging & winning" title={<>₹2,00,000 on the table<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="₹1,50,000 main prize pool + ₹50,000 Convergence prize. Live demo in front of the jury  no pre-recorded walkthroughs." />
+        <Head label="Judging & winning" title={<>₹1,15,000 on the table<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="₹1,00,000 main prize pool (₹50,000 + ₹30,000 + ₹20,000) + ₹15,000 Convergence prize. Live demo in front of the jury no pre-recorded walkthroughs." />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginTop: 48 }} className="codeastra-grid-4">
           {tiers.map((t, i) => (
             <Reveal key={t.p} delay={i * 0.07}>
@@ -328,7 +386,7 @@ export function RegisterSection() {
     <section id="register" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)', borderTop: '1px solid var(--cb-border)' }}>
       <div style={{ ...wrap, textAlign: 'center' }}>
         <Reveal>
-          <p style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--cb-text-dim)', marginBottom: 20 }}>Join Codeastra 2.0</p>
+          <p style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--cb-text-dim)', marginBottom: 20 }}>Join Codeastra</p>
           <h2 style={{ fontSize: 'clamp(2.4rem, 7vw, 5.5rem)', lineHeight: 0.92, textTransform: 'uppercase', margin: 0 }}>
             Ready to go<br />beyond the code<span style={{ color: 'var(--cb-accent)' }}>?</span>
           </h2>
@@ -345,7 +403,7 @@ export function RegisterSection() {
             </a>
           </div>
           <p style={{ marginTop: 26, fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cb-text-dim)' }}>
-            ₹2,00,000 total pool · RGIT, Andheri West, Mumbai · 1st week of October
+            ₹1,15,000 total pool · RGIT, Andheri West, Mumbai · 1st week of October
           </p>
         </Reveal>
       </div>
@@ -357,8 +415,8 @@ export function FaqSection() {
   const faqs = [
     { q: 'Who can participate?', a: 'Students and young developers. Teams qualify through online selection: registration → idea submission → screening → shortlisting.' },
     { q: 'Where and when is it?', a: 'RGIT, Andheri West, Mumbai  1st week of October, under SYNERGY 2027. The hackathon itself is a 24-hour offline sprint.' },
-    { q: 'What are the domains?', a: 'Web & Product Development, AI & ML, IoT & Connected Systems, and Cybersecurity & Digital Trust.' },
-    { q: 'What is Convergence?', a: 'You are paired with another team  preferably from a different domain  and must integrate part of each other\u2019s solution. A dedicated ₹50,000 prize (₹25,000 per team) rewards the best integration.' },
+    { q: 'What are the domains?', a: 'Web & Product Development, AI & ML, Cloud Computing & Distributed Systems, and Cybersecurity & Digital Trust.' },
+    { q: 'What is Convergence?', a: 'You are paired with another team preferably from a different domain and must integrate part of each other’s solution. A dedicated ₹15,000 prize rewards the best integration.' },
     { q: 'How are we judged?', a: 'Live demo + jury Q&A. Technical Execution (25%), Problem Understanding (20%), Innovation (20%), Functionality & Reliability (20%), Impact & Scalability (15%).' },
     { q: 'What should we bring?', a: 'Your team, your machines, and a working mindset. Mentorship, technical support and the chaos  we provide those.' },
   ];

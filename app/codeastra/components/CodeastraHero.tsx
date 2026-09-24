@@ -40,7 +40,7 @@ export default function CodeastraHero({ ready }: { ready: boolean }) {
             opacity: 0.22,
           }}
         />
-        {/* orbital rings — kept high and compact so they never touch the metadata */}
+        {/* orbital rings kept high and compact so they never touch the metadata */}
         <svg viewBox="0 0 400 400" style={{ position: 'absolute', top: '-150px', right: '-70px', width: 300, height: 300, opacity: 0.22 }}>
           <circle cx="200" cy="200" r="150" fill="none" stroke="var(--cb-border-strong)" strokeWidth="1" />
           <circle cx="200" cy="200" r="118" fill="none" stroke="var(--cb-border)" strokeWidth="1" strokeDasharray="2 7" />
@@ -49,7 +49,7 @@ export default function CodeastraHero({ ready }: { ready: boolean }) {
         </svg>
       </div>
 
-      {/* ── GO BEYOND motif — sunk low so the headline owns the upper field ── */}
+      {/* ── GO BEYOND motif sunk low so the headline owns the upper field ── */}
       <div
         aria-hidden="true"
         style={{
@@ -122,12 +122,12 @@ export default function CodeastraHero({ ready }: { ready: boolean }) {
             display: 'flex', alignItems: 'center', gap: 12,
           }}
         >
-          Codeastra 2.0
+          Codeastra
           <span aria-hidden="true" style={{ width: 10, height: 10, background: 'var(--cb-accent)', display: 'inline-block', flexShrink: 0 }} />
         </motion.p>
       </div>
 
-      {/* ── LEVEL 2: BEYOND — unobstructed, dominant ── */}
+      {/* ── LEVEL 2: BEYOND unobstructed, dominant ── */}
       <motion.div
         initial={{ opacity: 0, filter: 'blur(10px)' }}
         animate={ready ? { opacity: 1, filter: 'blur(0px)' } : {}}
@@ -203,7 +203,7 @@ export default function CodeastraHero({ ready }: { ready: boolean }) {
             ['Date', '1st week of October 2027'],
             ['Venue', 'RGIT, Andheri West, Mumbai'],
             ['Format', '24 hours · Offline · 8 phases'],
-            ['Prize pool', '₹2,00,000 total'],
+            ['Prize pool', '₹1,15,000 total'],
           ].map(([k, v], i) => (
             <div
               key={k}

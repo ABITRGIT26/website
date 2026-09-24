@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeft, Check, ChevronDown, MessageCircle } from 'lucide-react';
 import ThemeProvider from '../components/ThemeProvider';
+import { problemStatements, psById, psDomainLabel } from '../data/problemStatements';
 
 // TODO: replace with the real WhatsApp group invite link
 const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/REPLACE_WITH_REAL_INVITE_LINK';
@@ -59,7 +60,7 @@ function BeyondIntro({ onDone }: { onDone: () => void }) {
               Going<br />Beyond.
             </p>
             <p style={{ marginTop: 22, display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--cb-accent-text)' }}>
-               Codeastra 2.0
+               Codeastra
             </p>
           </motion.div>
         )}
@@ -213,7 +214,7 @@ function SubmitSuccess({ teamId, email }: { teamId: string; email: string }) {
           transition={{ duration: 0.5, delay: 1.7, ease }}
           style={{ color: 'var(--cb-accent-text)', fontSize: 13, opacity: 0.65, marginBottom: 32 }}
         >
-          Your team ID is <span style={{ fontWeight: 700, opacity: 1 }}>{teamId}</span>. Until then — keep building.
+          Your team ID is <span style={{ fontWeight: 700, opacity: 1 }}>{teamId}</span>. Until then keep building.
         </motion.p>
 
         {/* Buttons */}
@@ -261,16 +262,23 @@ function RegisterForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [teamSize, setTeamSize] = useState(2);
   const [f, setF] = useState({
-    teamName: '', teamSize: '2', domain: '', email: '', phone: '',
+    teamName: '', teamSize: '2', domain: '', psId: '', email: '', phone: '',
     collegeName: '', engYear: 'TE',
     teamLead: '', member2: '', member3: '', member4: '',
-    ideaTitle: '', ideaProblem: '', ideaApproach: '', ideaTech: '',
+    ideaTitle: '', ideaProblem: '', ideaApproach: '', ideaTech: '', pitchDeck: '',
     referral: '', additionalInfo: '', extraNote: '', teamId: '',
   });
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setF((p) => ({ ...p, [name]: value }));
+    setF((p) => {
+      const next = { ...p, [name]: value };
+      // Changing domain invalidates a PS picked from another domain
+      if (name === 'domain' && next.psId && psById[next.psId]?.domain !== value) {
+        next.psId = '';
+      }
+      return next;
+    });
     if (name === 'teamSize') setTeamSize(parseInt(value));
   };
 
@@ -310,7 +318,7 @@ function RegisterForm() {
     setStep((s) => Math.min(s + 1, 4));
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Only submit from the final step. Enter key on earlier steps
     // triggers implicit form submission, advance instead of submitting.
@@ -328,9 +336,19 @@ function RegisterForm() {
     let id = '';
     for (let i = 0; i < 4; i++) id += chars.charAt(Math.floor(Math.random() * chars.length));
     const teamId = `CODE-ABIT-${id}`;
+    const payload = { ...f, teamId };
     setF((p) => ({ ...p, teamId }));
-    // Mock submission delay
-    setTimeout(() => setStatus('success'), 1200);
+    try {
+      const res = await fetch('/api/codeastra', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Submission failed');
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   if (status === 'success') {
@@ -365,9 +383,29 @@ function RegisterForm() {
                 <option value="">Select your domain</option>
                 <option value="web">Web & Product Development</option>
                 <option value="ai">AI & ML</option>
-                <option value="iot">IoT & Connected Systems</option>
+                <option value="cloud">Cloud Computing & Distributed Systems</option>
                 <option value="cyber">Cybersecurity & Digital Trust</option>
               </FieldSelect>
+            </div>
+            <div>
+              <label style={label}>Problem statement <span style={{ color: 'var(--cb-text-dim)' }}>(optional)</span></label>
+              <FieldSelect name="psId" value={f.psId} onChange={set}>
+                <option value="">Undecided (pick later)</option>
+                {f.domain
+                  ? problemStatements
+                      .filter((ps) => ps.domain === f.domain)
+                      .map((ps) => <option key={ps.id} value={ps.id}>{ps.title}</option>)
+                  : (['web', 'ai', 'cloud', 'cyber'] as const).map((d) => (
+                      <optgroup key={d} label={psDomainLabel[d]}>
+                        {problemStatements
+                          .filter((ps) => ps.domain === d)
+                          .map((ps) => <option key={ps.id} value={ps.id}>{ps.title}</option>)}
+                      </optgroup>
+                    ))}
+              </FieldSelect>
+              <p style={{ margin: '8px 0 0', fontFamily: 'var(--font-utility)', fontSize: 12, lineHeight: 1.6, color: 'var(--cb-text-dim)' }}>
+                Pick a domain first to narrow the list, or browse all twelve statements on the Codeastra page.
+              </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="reg-grid">
               <div>
@@ -447,6 +485,13 @@ function RegisterForm() {
             <div>
               <label style={label}>Tech stack / tools</label>
               <input name="ideaTech" value={f.ideaTech} onChange={set} required type="text" placeholder="e.g. Next.js, Python, TensorFlow" style={inp} />
+            </div>
+            <div>
+              <label style={label}>Presentation link <span style={{ color: 'var(--cb-text-dim)' }}>(optional)</span></label>
+              <input name="pitchDeck" value={f.pitchDeck} onChange={set} type="url" inputMode="url" placeholder="https://drive.google.com/... (shareable Drive link to your PPT/slides)" style={inp} />
+              <p style={{ margin: '8px 0 0', fontFamily: 'var(--font-utility)', fontSize: 12, lineHeight: 1.6, color: 'var(--cb-text-dim)' }}>
+                Paste a Google Drive link to your presentation or pitch deck. Make sure link sharing is on (“Anyone with the link can view”).
+              </p>
             </div>
           </motion.div>
         )}
@@ -533,7 +578,7 @@ export default function RegisterClient() {
         <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'var(--cb-nav-bg-solid)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderBottom: '1px solid var(--cb-border)' }}>
           <div style={{ maxWidth: 1400, margin: '0 auto', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Link href="/codeastra" style={{ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: 8 }}>
-              <span style={{ fontWeight: 900, fontSize: 17, letterSpacing: '0.02em', color: 'var(--cb-text)', textTransform: 'uppercase', fontFamily: 'var(--font-display)' }}>Codeastra 2.0</span>
+              <span style={{ fontWeight: 900, fontSize: 17, letterSpacing: '0.02em', color: 'var(--cb-text)', textTransform: 'uppercase', fontFamily: 'var(--font-display)' }}>Codeastra</span>
               <span aria-hidden="true" style={{ width: 7, height: 7, background: 'var(--cb-accent)', display: 'inline-block' }} />
             </Link>
             <Link href="/codeastra" style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cb-text-muted)', textDecoration: 'none' }}>
@@ -563,7 +608,7 @@ export default function RegisterClient() {
         <footer style={{ background: 'var(--cb-bg-raised)', borderTop: '1px solid var(--cb-border)' }}>
           <div style={{ height: 2, background: 'var(--cb-accent)' }} />
           <div style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--cb-text-muted)' }}>
-            <span>© 2026 ABIT · Codeastra 2.0</span>
+            <span>© 2026 ABIT · Codeastra</span>
             <Link href="/codeastra" style={{ color: 'var(--cb-text-muted)', textDecoration: 'none' }}>← Back to Codeastra</Link>
           </div>
         </footer>

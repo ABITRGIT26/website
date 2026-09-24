@@ -42,7 +42,7 @@ export default function About() {
                         lineHeight: 1.8,
                         marginBottom: '24px'
                     }}>
-                        Shark-A-Thon is a high-stakes startup pitch competition where bold thinkers present their ideas to a panel of industry experts and investors. Inspired by the spirit of Dream Big, this stage is where imagination meets opportunity.
+                        Sharkathon is a high-stakes startup pitch competition where bold thinkers present their ideas to a panel of industry experts and investors. Inspired by the spirit of Dream Big, this stage is where imagination meets opportunity.
                     </p>
                     <p style={{
                         color: 'rgba(255,255,255,0.7)',

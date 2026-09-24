@@ -38,7 +38,7 @@ export default function ProjectsPage() {
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                     style={{ color: 'rgba(255,255,255,0.55)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.8, maxWidth: '580px', margin: '0 auto' }}
                 >
-                    Real projects solving real-world problems — built by ABIT students using cutting-edge technologies.
+                    Real projects solving real-world problems  built by ABIT students using cutting-edge technologies.
                 </motion.p>
             </section>
 

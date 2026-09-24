@@ -11,6 +11,7 @@ import {
   Marquee,
   EventSection,
   DomainsSection,
+  ProblemStatementsSection,
   JourneySection,
   TrialsSection,
   ConvergenceSection,
@@ -114,6 +115,7 @@ export default function CodeastraClient() {
         </div>
 
         <DomainsSection />
+        <ProblemStatementsSection />
         <JourneySection />
         <TrialsSection />
         <ConvergenceSection />

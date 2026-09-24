@@ -4,14 +4,14 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-mot
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 /**
- * BreachTransition — CODEASTRA's answer to Sharkathon's ping-pong ball.
+ * BreachTransition CODEASTRA's answer to Sharkathon's ping-pong ball.
  *
  * A lightsaber (white core, electric-blue plasma) ignites mid-fall and stabs
  * through a dreamy starfield as you scroll, trailing plasma sparks and speed
- * lines. It strikes the grid — screen kick, elliptical shockwaves, emissive
- * ground cracks, directional debris — bursts into sparkles, and detonates
+ * lines. It strikes the grid screen kick, elliptical shockwaves, emissive
+ * ground cracks, directional debris bursts into sparkles, and detonates
  * into a dark electric flood carrying the message "YOU ARE NOW GOING
- * BEYOND." beneath twinkling stars while embers rise — then lifts
+ * BEYOND." beneath twinkling stars while embers rise then lifts
  * to reveal the next section.
  * Brutalist bones, luxurious finish.
  */
@@ -422,7 +422,7 @@ export default function BreachTransition({
                 <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
             </motion.div>
 
-            {/* Shockwave rings — squashed to read as striking a floor */}
+            {/* Shockwave rings squashed to read as striking a floor */}
             <motion.div
                 style={{
                     position: 'absolute',
@@ -527,7 +527,7 @@ export default function BreachTransition({
                 );
             })}
 
-            {/* The falling lightsaber — white core, electric-blue plasma, tip down */}
+            {/* The falling lightsaber white core, electric-blue plasma, tip down */}
             <motion.div
                 style={{
                     position: 'absolute',
@@ -543,7 +543,7 @@ export default function BreachTransition({
                     transformOrigin: 'center center',
                 }}
             >
-                {/* Dark electric flood — takes over as the saber detonates */}
+                {/* Dark electric flood takes over as the saber detonates */}
                 <motion.div
                     style={{
                         position: 'absolute',
@@ -555,7 +555,7 @@ export default function BreachTransition({
                         willChange: 'opacity',
                     }}
                 />
-                {/* Bright saber visuals — dissolve on impact */}
+                {/* Bright saber visuals dissolve on impact */}
                 <motion.div style={{ position: 'absolute', inset: 0, opacity: bladeFade, willChange: 'opacity' }}>
                 {/* Speed lines lagging the fall */}
                 {[
@@ -816,7 +816,7 @@ export default function BreachTransition({
                     }}
                 >
                     
-                    Codeastra 2.0
+                    Codeastra
                 </p>
             </motion.div>
 

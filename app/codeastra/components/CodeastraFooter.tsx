@@ -5,13 +5,13 @@ import { ArrowRight, Trophy, Timer, MapPin } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
 const ASSURANCES = [
-  { icon: Trophy, label: '₹2,00,000 prize pool' },
+  { icon: Trophy, label: '₹1,15,000 prize pool' },
   { icon: Timer, label: '24 hours · Offline' },
   { icon: MapPin, label: 'RGIT · Mumbai' },
 ];
 
 const COLS = [
-  { t: 'Hackathon', ls: [{ h: '#event', l: 'The event' }, { h: '#domains', l: 'Domains' }, { h: '#journey', l: 'Journey' }, { h: '#prizes', l: 'Prizes' }] },
+  { t: 'Hackathon', ls: [{ h: '#event', l: 'The event' }, { h: '#domains', l: 'Domains' }, { h: '#statements', l: 'Problem statements' }, { h: '#journey', l: 'Journey' }, { h: '#prizes', l: 'Prizes' }] },
   { t: 'ABIT', ls: [{ h: '/', l: 'Home' }, { h: '/events', l: 'All events' }, { h: '/team', l: 'Team' }, { h: '/contact', l: 'Contact' }] },
 ];
 
@@ -56,7 +56,7 @@ export default function CodeastraFooter() {
                 Go beyond<br />the code.
               </p>
               <p style={{ fontSize: 15, lineHeight: 1.7, maxWidth: 380, margin: '0 0 28px', color: 'rgba(244,241,232,0.78)' }}>
-                There is always a line between an idea and reality. Codeastra 2.0 invites you to cross it.
+                There is always a line between an idea and reality. Codeastra invites you to cross it.
               </p>
               <Link
                 href="/codeastra/register"
@@ -71,7 +71,7 @@ export default function CodeastraFooter() {
             </div>
 
             {COLS.map((c) => (
-              <nav key={c.t} aria-label={`Footer — ${c.t}`}>
+              <nav key={c.t} aria-label={`Footer ${c.t}`}>
                 <h3 style={{ fontFamily: 'var(--font-utility)', fontSize: 13, letterSpacing: '0.22em', textTransform: 'uppercase', margin: '0 0 26px', fontWeight: 700 }}>{c.t}</h3>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 20 }}>
                   {c.ls.map((l) => (

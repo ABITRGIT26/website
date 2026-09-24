@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
 
 const gallery = [
-    { id: 1, alt: 'Synergy 2024 Opening Ceremony', category: 'synergy', emoji: '🎪', color: '#FFFFFF', desc: 'SYNERGY 2024 — Main Stage Opening' },
+    { id: 1, alt: 'Synergy 2024 Opening Ceremony', category: 'synergy', emoji: '🎪', color: '#FFFFFF', desc: 'SYNERGY 2024  Main Stage Opening' },
     { id: 2, alt: 'Hackathon Team Huddle', category: 'hackathon', emoji: '💻', color: '#10B981', desc: 'Teams collaborating during the 24hr Hackathon' },
-    { id: 3, alt: 'Workshop Session', category: 'workshops', emoji: '📚', color: '#8B5CF6', desc: 'Full Stack Web Dev Workshop — Session 1' },
+    { id: 3, alt: 'Workshop Session', category: 'workshops', emoji: '📚', color: '#8B5CF6', desc: 'Full Stack Web Dev Workshop  Session 1' },
     { id: 4, alt: 'Award Ceremony', category: 'synergy', emoji: '🏆', color: '#F59E0B', desc: 'Prize distribution at SYNERGY 2024' },
-    { id: 5, alt: 'AI Workshop', category: 'workshops', emoji: '🤖', color: '#EF4444', desc: 'AI & ML Bootcamp — Neural Networks Lab' },
+    { id: 5, alt: 'AI Workshop', category: 'workshops', emoji: '🤖', color: '#EF4444', desc: 'AI & ML Bootcamp  Neural Networks Lab' },
     { id: 6, alt: 'Networking Session', category: 'networking', emoji: '🤝', color: '#06B6D4', desc: 'Student-Industry Networking Night' },
-    { id: 7, alt: 'Panel Discussion', category: 'synergy', emoji: '🎙️', color: '#FFFFFF', desc: 'Tech Leaders Panel — SYNERGY 2024' },
+    { id: 7, alt: 'Panel Discussion', category: 'synergy', emoji: '🎙️', color: '#FFFFFF', desc: 'Tech Leaders Panel  SYNERGY 2024' },
     { id: 8, alt: 'Team Building Activity', category: 'networking', emoji: '👥', color: '#10B981', desc: 'ABIT Team Building Workshop' },
     { id: 9, alt: 'Project Expo', category: 'hackathon', emoji: '🚀', color: '#8B5CF6', desc: 'Student Project Exhibition 2024' },
 ];

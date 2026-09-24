@@ -1,62 +1,63 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Playfair_Display, Geist } from "next/font/google";
+import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const spaceGrotesk = Space_Grotesk({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-inter-tight",
   display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const inter = Inter({
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-instrument",
   display: "swap",
+  weight: ["400"],
 });
 
-const playfair = Playfair_Display({
+const mono2 = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-mono2",
   display: "swap",
-  style: ['normal', 'italic'],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "ABIT — Association of Budding Information Technocrats",
-    template: "%s | ABIT",
+    default: 'ABIT · Association of Budding Information Technocrats | RGIT Mumbai',
+    template: '%s | ABIT RGIT',
   },
   description:
-    "ABIT is a student-driven technology community at RGIT dedicated to fostering innovation, collaboration, and technical excellence through workshops, hackathons, and events.",
+    'ABIT is the official departmental committee of RGIT Mumbai\u2019s Information Technology Department. Workshops, hackathons, the SYNERGY festival, and a community of student builders.',
   keywords: [
-    "ABIT",
-    "ABIT RGIT",
-    "ABIT tech community",
-    "ABIT events",
-    "ABIT SYNERGY",
-    "Association of Budding Information Technocrats",
-    "student tech community",
+    'ABIT',
+    'ABIT RGIT',
+    'Association of Budding Information Technocrats',
+    'RGIT Information Technology',
+    'RGIT Mumbai',
+    'SYNERGY',
+    'SYNERGY',
+    'student tech committee Mumbai',
   ],
-  authors: [{ name: "ABIT" }],
+  authors: [{ name: 'ABIT · Association of Budding Information Technocrats' }],
   openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: "https://abit.rgit.ac.in",
-    siteName: "ABIT",
-    title: "ABIT — Association of Budding Information Technocrats",
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://abit.rgit.ac.in',
+    siteName: 'ABIT · RGIT Mumbai',
+    title: 'ABIT · Association of Budding Information Technocrats | RGIT Mumbai',
     description:
-      "A student-driven technology community fostering innovation, collaboration, and technical excellence.",
+      'The official IT department committee of RGIT Mumbai. Workshops, hackathons, SYNERGY festival, and community.',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "ABIT — Association of Budding Information Technocrats",
+    card: 'summary_large_image',
+    title: 'ABIT · Association of Budding Information Technocrats | RGIT Mumbai',
     description:
-      "A student-driven technology community fostering innovation, collaboration, and technical excellence.",
+      'The official IT department committee of RGIT Mumbai. Workshops, hackathons, SYNERGY festival, and community.',
   },
 };
 
@@ -66,10 +67,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(spaceGrotesk.variable, inter.variable, playfair.variable, "font-sans", geist.variable)}>
+    <html lang="en" data-scroll-behavior="smooth" className={cn(interTight.variable, instrument.variable, mono2.variable, "font-sans")}>
       <body className="noise">
         <Navbar />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

@@ -1,8 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: __dirname,
+  },
   images: {
-    domains: ["abit-website-flax.vercel.app", "images.unsplash.com"],
+    remotePatterns: [
+      { hostname: "abit-website-flax.vercel.app" },
+      { hostname: "images.unsplash.com" },
+    ],
   },
 };
 

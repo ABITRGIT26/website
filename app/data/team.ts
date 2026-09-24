@@ -1,7 +1,7 @@
 export interface TeamMember {
     name: string;
     role: string;
-    team: 'core_25_26' | 'core_24_25' | 'core_23_24' | 'technical' | 'design' | 'events' | 'media';
+    team: 'core_26_27' | 'core_25_26' | 'core_24_25' | 'core_23_24' | 'technical' | 'design' | 'events' | 'media';
     image: string;
     linkedin?: string;
     github?: string;
@@ -9,7 +9,17 @@ export interface TeamMember {
 }
 
 export const team: TeamMember[] = [
-    // Core 2025-2026
+    // Core 2026-2027 (present committee)
+    { name: 'Durgesh Tiwari', role: 'President', team: 'core_26_27', image: '/team/durgesh_tiwari.jpg', linkedin: 'https://www.linkedin.com/in/durgesh-tiwari-b4a4a8437', bio: 'There is no matter as such mind is the matrix of all matter' },
+    { name: 'Harsh Singh', role: 'General Secretary', team: 'core_26_27', image: '/team/harsh_singh_v2.jpg', linkedin: 'https://www.linkedin.com/in/harsh-singh-267s', bio: '“Loyalty is a two-way street.”' },
+    { name: 'Chetna Sinha', role: 'Managing Director', team: 'core_26_27', image: '/team/chetna_sinha_v2.jpg', linkedin: 'https://www.linkedin.com/in/chetna-sinha-1b94b9418/', bio: "Welcome to the real world. It sucks but You're gonna love it" },
+    { name: 'Siddhant Tandel', role: 'Treasurer', team: 'core_26_27', image: '/team/siddhant_tandel.jpg', linkedin: 'https://www.linkedin.com/in/siddhant-tandel-114474251', bio: 'Great things take time' },
+    { name: 'Siddhesh Tawade', role: 'Vice President', team: 'core_26_27', image: '/team/Siddhesh_Tawade.jpeg', linkedin: 'https://www.linkedin.com/in/siddhesh-tawade-794779426', bio: 'Great things are never achieved alone; they are built by a team that believes, works, and grows together.' },
+    { name: 'Yukta Raut', role: 'Joint General Secretary', team: 'core_26_27', image: '/team/yukta_raut_v2.jpg', linkedin: 'https://www.linkedin.com/in/yuktaraut', bio: 'One must imagine Sisyphus happy.' },
+    { name: 'Yashodeep Jadhav', role: 'Joint General Secretary', team: 'core_26_27', image: '/team/yashodeep_jadhav.jpg', linkedin: 'https://www.linkedin.com/in/yashodeep-jadhav-626b05426', bio: 'Anyone can do my job, but no one can do it like me.' },
+    { name: 'Vrusha Vengurlekar', role: 'Social Media Executive', team: 'core_26_27', image: '/team/vrusha_vengurlekar.jpg', linkedin: 'https://www.linkedin.com/in/vrusha-vengurlekar-21ab06416', bio: '“Chaos is a ladder.”' },
+
+    // Core 2025-2026 (now archive)
     { name: 'Darshan Rane', role: 'President', team: 'core_25_26', image: '/team/darshan_rane.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
     { name: 'Divyang Pawar', role: 'Treasurer', team: 'core_25_26', image: '/team/divyang_pawar.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
     { name: 'Krishna Sharma', role: 'Managing Director', team: 'core_25_26', image: '/team/krishna_sharma.jpg', linkedin: '#', bio: 'Leadership · Execution · Excellence' },
@@ -47,6 +57,7 @@ export const team: TeamMember[] = [
     { name: 'Karan Malhotra', role: 'Sponsorship Lead', team: 'events', image: '/team/karan.jpg', linkedin: '#', bio: 'Securing partnerships with leading tech companies.' },
 ];
 
+export const core2627 = team.filter((m) => m.team === 'core_26_27');
 export const core2526 = team.filter((m) => m.team === 'core_25_26');
 export const core2425 = team.filter((m) => m.team === 'core_24_25');
 export const core2324 = team.filter((m) => m.team === 'core_23_24');
@@ -75,9 +86,9 @@ export const mentors: Mentor[] = [
         image: '/team/sunil_wankhade.png',
     },
     {
-        name: 'Prof. Ankush Hutke',
+        name: 'Dr. Ankush Hutke',
         role: 'ABIT CONVENOR',
         quote: 'Guiding the next generation of innovators is our passion and privilege.',
-        image: '/team/ankush_hutke.png',
+        image: '/team/ankush_hutke.jpg',
     }
 ];

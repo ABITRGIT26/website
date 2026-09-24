@@ -41,7 +41,7 @@ export const projects: Project[] = [
     },
     {
         title: 'CodeBuddy AI',
-        description: 'An AI-powered coding assistant that explains code, suggests improvements, and helps debug — built specifically for college students.',
+        description: 'An AI-powered coding assistant that explains code, suggests improvements, and helps debug  built specifically for college students.',
         tech: ['Python', 'FastAPI', 'LangChain', 'React', 'OpenAI'],
         github: '#',
         demo: '#',
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     },
     {
         title: 'EcoTrack',
-        description: 'A carbon footprint tracker mobile app that gamifies sustainability — users earn points by making eco-friendly choices.',
+        description: 'A carbon footprint tracker mobile app that gamifies sustainability  users earn points by making eco-friendly choices.',
         tech: ['React Native', 'Expo', 'Node.js', 'MongoDB'],
         github: '#',
         demo: '#',

@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  * SmokeIntro  cinematic opening for /codeastra.
  *
  * Inspired by refs/700_F_1666797453…mp4 (black → smoke gathers →
- * "CODEASTRA 2.0" materialises out of haze → hold → veil lifts).
+ * "CODEASTRA" materialises out of haze → hold → veil lifts).
  * Rebuilt in code (no watermarked stock) with:
  *  - GPU-friendly sprite-based volumetric fog (3 depth layers)
  *  - floating dust + rising ember sparks
@@ -413,7 +413,7 @@ export default function SmokeIntro({ onDone }: { onDone: () => void }) {
 
               {/* two words that wrap on narrow screens instead of overflowing */}
               <h1
-                aria-label="CODEASTRA 2.0"
+                aria-label="CODEASTRA"
                 style={{
                   position: 'relative', margin: 0, display: 'flex', flexWrap: 'wrap',
                   justifyContent: 'center', columnGap: '0.28em',
