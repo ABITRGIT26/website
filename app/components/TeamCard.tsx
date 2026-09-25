@@ -73,11 +73,14 @@ export default function TeamCard({ member, index = 0, isHighlighted = false }: T
           border: '1px solid var(--text)',
           background: 'var(--bg)',
           position: 'relative',
+          minWidth: 0,
+          maxWidth: '100%',
+          overflow: 'hidden',
         }}
       >
         {/* cobalt threshold line */}
         <span aria-hidden="true" style={{ position: 'absolute', top: -1, left: -1, right: -1, height: 2, background: 'var(--blue)' }} />
-        <div style={{ position: 'relative', minHeight: 380, background: 'var(--surface)', overflow: 'hidden' }}>
+        <div className="president-photo-wrap" style={{ position: 'relative', minHeight: 380, background: 'var(--surface)', overflow: 'hidden', minWidth: 0 }}>
           {member.image ? (
             <Image
               src={member.image}
@@ -103,12 +106,12 @@ export default function TeamCard({ member, index = 0, isHighlighted = false }: T
             01 / {member.role}  Present committee
           </span>
         </div>
-        <div style={{ padding: 'clamp(24px, 4vw, 48px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div className="president-copy" style={{ padding: 'clamp(24px, 4vw, 48px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: 0 }}>
           <p className="mono-meta" style={{ marginBottom: 14 }}>
             <span aria-hidden="true" style={{ display: 'inline-block', width: 8, height: 8, background: 'var(--accent)', marginRight: 10, verticalAlign: 1 }} />
             Present committee · Leadership
           </p>
-          <h3 style={{ fontSize: 'clamp(28px, 3.4vw, 44px)', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: 8 }}>
+          <h3 className="president-name" style={{ fontSize: 'clamp(28px, 3.4vw, 44px)', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: 8, overflowWrap: 'break-word' }}>
             {member.name}
           </h3>
           <p style={{ fontFamily: 'var(--font-utility)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--blue)', fontWeight: 700, marginBottom: 16 }}>
@@ -119,7 +122,7 @@ export default function TeamCard({ member, index = 0, isHighlighted = false }: T
               “{member.bio}”
             </p>
           )}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 24 }}>
+          <div className="president-links" style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 24, flexWrap: 'wrap' }}>
             {member.linkedin && member.linkedin !== '#' && (
               <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} on LinkedIn`}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontWeight: 700, fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)', textDecoration: 'none' }}>
@@ -138,7 +141,7 @@ export default function TeamCard({ member, index = 0, isHighlighted = false }: T
                 GitHub <ArrowUpRight size={14} />
               </a>
             )}
-            <span aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginLeft: 'auto', color: 'var(--muted)', fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.12em' }}>
+            <span aria-hidden="true" className="president-count" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginLeft: 'auto', color: 'var(--muted)', fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.12em' }}>
               <span style={{ display: 'inline-block', width: 56, height: 1, background: 'var(--blue)' }} /> 01
             </span>
           </div>

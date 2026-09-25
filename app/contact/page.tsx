@@ -2,13 +2,11 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Twitter, Linkedin, Github, Instagram, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Linkedin, Instagram, CheckCircle } from 'lucide-react';
 
 const socials = [
-  { icon: Twitter, href: '#', label: 'Twitter / X', handle: '@abit_rgit' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn', handle: 'ABIT RGIT' },
-  { icon: Github, href: '#', label: 'GitHub', handle: 'abit-rgit' },
-  { icon: Instagram, href: '#', label: 'Instagram', handle: '@abit.rgit' },
+  { icon: Linkedin, href: 'https://in.linkedin.com/company/abitrgit', label: 'LinkedIn', handle: 'ABIT RGIT' },
+  { icon: Instagram, href: 'https://instagram.com/abit.rgit', label: 'Instagram', handle: '@abit.rgit' },
 ];
 
 export default function ContactPage() {
@@ -108,17 +106,24 @@ export default function ContactPage() {
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 800, color: 'var(--text)', marginBottom: 20 }}>Contact Info</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {[
-                    { icon: Mail, text: 'abitrgit.it@gmail.com', label: 'Email' },
-                    { icon: Phone, text: '+91 98765 43210', label: 'Phone' },
+                    { icon: Mail, text: 'abitrgit.it@gmail.com', label: 'Email', href: 'mailto:abitrgit.it@gmail.com' },
+                    { icon: Phone, text: '+91 86001 46104', sub: 'Dr Ankush Hutke · ABIT Convenor', label: 'Phone', href: 'tel:+918600146104' },
                     { icon: MapPin, text: 'RGIT, Versova, Andheri West, Mumbai  400053', label: 'Address' },
-                  ].map(({ icon: Icon, text, label }) => (
+                  ].map(({ icon: Icon, text, sub, label, href }) => (
                     <div key={label} style={{ display: 'flex', gap: 12 }}>
                       <div style={{ width: 38, height: 38, background: 'var(--surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <Icon size={16} color="var(--muted)" />
                       </div>
-                      <div>
+                      <div style={{ minWidth: 0 }}>
                         <div style={{ fontFamily: 'var(--font-utility)', color: 'var(--muted)', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 3 }}>{label}</div>
-                        <div style={{ color: 'var(--text)', fontSize: 13 }}>{text}</div>
+                        {href ? (
+                          <a href={href} style={{ color: 'var(--text)', fontSize: 13, textDecoration: 'none', overflowWrap: 'anywhere' }}>{text}</a>
+                        ) : (
+                          <div style={{ color: 'var(--text)', fontSize: 13 }}>{text}</div>
+                        )}
+                        {sub ? (
+                          <div style={{ color: 'var(--muted)', fontSize: 12, marginTop: 2 }}>{sub}</div>
+                        ) : null}
                       </div>
                     </div>
                   ))}

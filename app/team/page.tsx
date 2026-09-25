@@ -435,6 +435,17 @@ export default function TeamPage() {
           .hrow { grid-template-columns: 1fr; }
           .hrow-narrow { max-width: 480px; }
         }
+
+        /* ── President spotlight · never overflow the viewport ── */
+        .president-card { min-width: 0; max-width: 100%; }
+        .president-card > div { min-width: 0; }
+        @media (max-width: 820px) {
+          .president-card { grid-template-columns: 1fr !important; }
+          .president-photo-wrap { min-height: 300px !important; }
+          .president-copy { padding: 24px 20px !important; }
+          .president-name { font-size: clamp(26px, 8vw, 34px) !important; }
+          .president-count { margin-left: 0 !important; }
+        }
       `}</style>
     </div>
   );

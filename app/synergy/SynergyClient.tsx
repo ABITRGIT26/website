@@ -14,8 +14,8 @@ export default function SynergyClient() {
   return (
     <div style={{ background: 'var(--bg)', color: 'var(--text)', minHeight: '100vh' }}>
       {/* ═══ Hero · animated poster ═══ */}
-      <section aria-labelledby="synergy-title" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#F2EBD9', minHeight: '100svh', display: 'flex', flexDirection: 'column' }}>
-        {/* animated poster backdrop */}
+      <section aria-labelledby="synergy-title" className="synergy-hero" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#F2EBD9', minHeight: '100svh', display: 'flex', flexDirection: 'column' }}>
+        {/* animated poster backdrop (desktop) · hidden on mobile, replaced by a fluid HTML wordmark */}
         <video
           aria-hidden="true"
           autoPlay
@@ -23,6 +23,7 @@ export default function SynergyClient() {
           loop
           playsInline
           preload="metadata"
+          className="synergy-hero-video"
           ref={(v) => { if (v && window.matchMedia('(prefers-reduced-motion: reduce)').matches) v.pause(); }}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         >
@@ -35,17 +36,24 @@ export default function SynergyClient() {
         </h1>
 
         {/* ── poster copy, settled low over the dark field ── */}
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 1280, margin: '0 auto', padding: '10px 0 0', width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+        <div className="synergy-hero-inner" style={{ position: 'relative', zIndex: 2, maxWidth: 1280, margin: '0 auto', padding: '10px 0 0', width: '100%', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
           {/* ── copy + actions ── */}
-          <div style={{ position: 'relative', zIndex: 3, textAlign: 'center', padding: '6px 24px 0', maxWidth: 720, margin: '0 auto' }}>
+          <div className="synergy-hero-copy" style={{ position: 'relative', zIndex: 3, textAlign: 'center', padding: '6px 24px 0', maxWidth: 720, margin: '0 auto' }}>
+            {/* mobile-only wordmark · the poster title is baked into the video and crops on narrow screens */}
+            <div aria-hidden="true" className="synergy-hero-wordmark">
+              <p className="synergy-hero-eyebrow">ABIT flagship · Phase 1</p>
+              <p className="synergy-hero-title">Synergy</p>
+            </div>
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.45 }}
+              className="synergy-hero-desc"
               style={{ color: 'rgba(242,235,217,0.72)', fontSize: 'clamp(15px, 1.8vw, 18px)', lineHeight: 1.8, margin: '0 auto 26px' }}
             >
               {synergyMeta.description}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.55 }}
+              className="synergy-hero-actions"
               style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 30 }}
             >
               <a
@@ -61,7 +69,7 @@ export default function SynergyClient() {
                 Get Involved <ArrowRight size={15} aria-hidden="true" />
               </Link>
             </motion.div>
-            <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(242,235,217,0.6)', paddingBottom: 56 }}>
+            <div className="synergy-hero-meta" style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(242,235,217,0.6)', paddingBottom: 'max(56px, env(safe-area-inset-bottom))' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><CalendarDays size={13} /> Sept 2026 – May 2027</span>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><MapPin size={13} /> {synergyMeta.venue}</span>
             </div>
@@ -163,6 +171,29 @@ export default function SynergyClient() {
       <style jsx global>{`
         @media (max-width: 900px) { .phase-grid { grid-template-columns: 1fr 1fr !important; } }
         @media (max-width: 600px) { .phase-grid { grid-template-columns: 1fr !important; } }
+        .synergy-hero-wordmark { display: none; }
+        .synergy-hero-eyebrow {
+          font-family: var(--font-utility); font-size: 11px; letter-spacing: 0.22em;
+          text-transform: uppercase; color: rgba(242,235,217,0.6); margin: 0 0 10px;
+        }
+        .synergy-hero-title {
+          font-family: var(--font-editorial); font-style: italic; font-weight: 400;
+          font-size: clamp(52px, 17.5vw, 120px); line-height: 1; margin: 0 0 18px;
+          color: #F2EBD9; white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+          .synergy-hero {
+            background: radial-gradient(ellipse 90% 45% at 50% 28%, rgba(64, 96, 190, 0.28), transparent 70%), #000 !important;
+          }
+          .synergy-hero-video { display: none; }
+          .synergy-hero-wordmark { display: block; }
+          .synergy-hero-inner { justify-content: center !important; padding-top: 110px !important; }
+          .synergy-hero-copy { padding-left: 20px !important; padding-right: 20px !important; }
+          .synergy-hero-desc { font-size: 15px !important; line-height: 1.7 !important; margin-bottom: 22px !important; }
+          .synergy-hero-actions { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; max-width: 300px; margin: 0 auto 24px !important; }
+          .synergy-hero-actions > * { width: 100%; justify-content: center; min-height: 48px; }
+          .synergy-hero-meta { flex-direction: column !important; gap: 10px !important; align-items: center !important; text-align: center; padding-bottom: max(40px, env(safe-area-inset-bottom)) !important; }
+        }
       `}</style>
     </div>
   );
