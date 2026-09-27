@@ -145,6 +145,14 @@ export default function CyberflareClient() {
         </h1>
 
         <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', position: 'relative', zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', paddingBottom: 28 }}>
+          {/* ── Logo row below "Think · Exploit · Capture" ── */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.12 }} style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap', marginBottom: 20 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="ABIT" style={{ height: 'clamp(36px, 5vw, 48px)', width: 'auto', filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.6))' }} />
+            <span aria-hidden="true" style={{ fontSize: 'clamp(16px, 2.5vw, 22px)', fontWeight: 300, color: 'rgba(244,241,232,0.8)' }}>×</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/hacktify_dark_mode.png" alt="Hacktify Cybersecurity" style={{ height: 'clamp(28px, 4.5vw, 38px)', width: 'auto', filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.6))' }} />
+          </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
             <span style={metaBadge}>
               <ShieldCheck size={13} color={BLUE} /> ABIT × Hacktify Cybersecurity
