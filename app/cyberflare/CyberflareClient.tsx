@@ -66,6 +66,12 @@ const card: React.CSSProperties = {
   padding: 28,
 };
 
+const PIXEL = 'var(--font-pixel, "Press Start 2P", monospace)';
+const CF_BG = '#020409';
+const CF_TEXT = '#EDF2FA';
+const CF_BODY = '#B9C7E2';
+const CF_META = '#7E93B8';
+
 const metaBadge: React.CSSProperties = {
   display: 'inline-flex',
   alignItems: 'center',
@@ -123,37 +129,74 @@ function Faq() {
 export default function CyberflareClient() {
   return (
     <div style={{ background: INK, color: PAPER, fontFamily: 'var(--font-inter-tight, "Inter Tight", sans-serif)', minHeight: '100vh', overflowX: 'hidden' }}>
-      {/* ── Hero ── */}
-      <section style={{ position: 'relative', overflow: 'hidden', minHeight: '100svh', display: 'flex', flexDirection: 'column', padding: '96px 24px 0' }}>
+      {/* ── Hero (code-built, matches design) ── */}
+      <section style={{ position: 'relative', overflow: 'hidden', background: CF_BG, minHeight: '100svh', display: 'flex', flexDirection: 'column' }}>
+        {/* Flag visuals — text-free crops of the key art */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/cyberflare-hero-desktop.png"
-          alt="CYBERFLARE 3.0 — Capture The Flag! Think · Exploit · Capture"
-          className="cf-hero-desktop"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+          src="/cyberflare-flag-desktop.png"
+          alt=""
+          aria-hidden="true"
+          className="cf-flag-desktop"
+          style={{ position: 'absolute', top: 0, right: 0, height: '100%', width: 'auto', maxWidth: '48%', objectFit: 'cover', objectPosition: 'left center', WebkitMaskImage: 'linear-gradient(to right, transparent, black 28%)', maskImage: 'linear-gradient(to right, transparent, black 28%)' }}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/cyberflare-hero-mobile.png"
-          alt="CYBERFLARE 3.0 — Capture The Flag! Think · Exploit · Capture"
-          className="cf-hero-mobile"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+          src="/cyberflare-flag-mobile.png"
+          alt=""
+          aria-hidden="true"
+          className="cf-flag-mobile"
+          style={{ position: 'absolute', right: 0, bottom: 0, width: '100%', height: '58%', objectFit: 'cover', objectPosition: 'center top', WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 32%)', maskImage: 'linear-gradient(to bottom, transparent, black 32%)' }}
         />
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(2,4,9,0.55) 0%, rgba(2,4,9,0.05) 32%, transparent 55%, rgba(2,4,9,0.88) 100%)' }} />
-        <h1 style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', margin: 0 }}>
-          CYBERFLARE 3.0 — Capture The Flag, ABIT × Hacktify Cybersecurity, RGIT Mumbai
-        </h1>
+        {/* Readability gradients */}
+        <div aria-hidden="true" className="cf-hero-shade" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(2,4,9,0.82) 0%, rgba(2,4,9,0.35) 34%, rgba(2,4,9,0.25) 52%, rgba(2,4,9,0.88) 100%)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(720px 420px at 12% 0%, rgba(47,123,255,0.14), transparent 65%)' }} />
 
-        <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', position: 'relative', zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', paddingBottom: 28 }}>
-          {/* ── Logo row below "Think · Exploit · Capture" ── */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.12 }} style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap', marginBottom: 20 }}>
+        {/* HUD side rails */}
+        <div aria-hidden="true" className="cf-rail" style={{ position: 'absolute', top: 0, bottom: 0, left: 28, width: 1, background: 'rgba(47,123,255,0.20)' }} />
+        <div aria-hidden="true" className="cf-rail" style={{ position: 'absolute', top: 0, bottom: 0, right: 28, width: 1, background: 'rgba(47,123,255,0.20)' }} />
+        <span aria-hidden="true" className="cf-rail-mark" style={{ position: 'absolute', top: 108, left: 22, color: 'rgba(47,123,255,0.55)', fontFamily: 'var(--font-utility)', fontSize: 14 }}>+</span>
+        <span aria-hidden="true" className="cf-rail-mark" style={{ position: 'absolute', bottom: '32%', left: 22, color: 'rgba(47,123,255,0.55)', fontFamily: 'var(--font-utility)', fontSize: 14 }}>+</span>
+        <span aria-hidden="true" className="cf-rail-mark" style={{ position: 'absolute', top: 108, right: 22, color: 'rgba(47,123,255,0.55)', fontFamily: 'var(--font-utility)', fontSize: 14 }}>+</span>
+        <span aria-hidden="true" className="cf-rail-mark" style={{ position: 'absolute', bottom: '32%', right: 22, color: 'rgba(47,123,255,0.55)', fontFamily: 'var(--font-utility)', fontSize: 14 }}>+</span>
+
+        {/* Content */}
+        <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', position: 'relative', zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '128px 24px 32px' }}>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1 }}
+            style={{ fontFamily: PIXEL, fontWeight: 400, color: CF_TEXT, fontSize: 'clamp(1.05rem, 5.6vw, 3rem)', lineHeight: 1.35, margin: 0, whiteSpace: 'nowrap', textShadow: '0 0 28px rgba(47,123,255,0.35)' }}
+          >
+            CYBERFLARE 3.0
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.2 }}
+            style={{ fontFamily: PIXEL, fontWeight: 400, color: '#DCE5F5', fontSize: 'clamp(0.65rem, 3vw, 1.1rem)', lineHeight: 1.6, letterSpacing: '0.06em', margin: '22px 0 0' }}
+          >
+            CAPTURE THE FLAG!
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            aria-hidden="true"
+            style={{ width: 56, height: 4, borderRadius: 2, background: BLUE, marginTop: 22, transformOrigin: 'left center' }}
+          />
+
+          {/* ABIT × Hacktify */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.36 }} style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 26 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="ABIT" style={{ height: 'clamp(36px, 5vw, 48px)', width: 'auto', filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.6))' }} />
-            <span aria-hidden="true" style={{ fontSize: 'clamp(16px, 2.5vw, 22px)', fontWeight: 300, color: 'rgba(244,241,232,0.8)' }}>×</span>
+            <img src="/logo.png" alt="ABIT" style={{ height: 'clamp(44px, 9vw, 62px)', width: 'auto', filter: 'drop-shadow(0 2px 14px rgba(0,0,0,0.7))' }} />
+            <span aria-hidden="true" style={{ fontSize: 'clamp(18px, 4vw, 26px)', fontWeight: 300, color: 'rgba(237,242,250,0.85)' }}>×</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/hacktify_dark_mode.png" alt="Hacktify Cybersecurity" style={{ height: 'clamp(28px, 4.5vw, 38px)', width: 'auto', filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.6))' }} />
+            <img src="/hacktify_dark_mode.png" alt="Hacktify Cybersecurity" style={{ height: 'clamp(30px, 6vw, 42px)', width: 'auto', filter: 'drop-shadow(0 2px 14px rgba(0,0,0,0.7))' }} />
           </motion.div>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
+
+          {/* Badges */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.44 }} style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 28 }}>
             <span style={metaBadge}>
               <ShieldCheck size={13} color={BLUE} /> ABIT × Hacktify Cybersecurity
             </span>
@@ -168,8 +211,8 @@ export default function CyberflareClient() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.32 }}
-            style={{ margin: '0 0 20px', fontSize: 'clamp(15px, 2vw, 18px)', lineHeight: 1.7, color: 'rgba(244,241,232,0.82)', maxWidth: 640 }}
+            transition={{ duration: 0.6, delay: 0.52 }}
+            style={{ margin: '28px 0 0', fontSize: 'clamp(16px, 2.4vw, 19px)', lineHeight: 1.65, color: CF_BODY, maxWidth: 620 }}
           >
             Arm yourself against digital threats. A 24-hour online CTF with real-world
             cybersecurity challenges — competitive, skill-based. Think. Hack. Capture the Flag.
@@ -178,8 +221,8 @@ export default function CyberflareClient() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.42 }}
-            style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 32 }}
           >
             <Link href="/cyberflare/register" className="btn-editorial btn-on-dark" style={{ textDecoration: 'none' }}>
               Register now — free <ArrowRight size={15} aria-hidden="true" />
@@ -188,16 +231,19 @@ export default function CyberflareClient() {
               How the CTF works
             </a>
           </motion.div>
+        </div>
 
+        {/* Bottom meta strip */}
+        <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', position: 'relative', zIndex: 2, padding: '0 24px 28px' }}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.55 }}
-            style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center', marginTop: 24, paddingTop: 14, borderTop: '1px solid rgba(196,208,232,0.18)', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(196,208,232,0.72)' }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            style={{ display: 'flex', gap: '18px 32px', flexWrap: 'wrap', alignItems: 'center', paddingTop: 20, borderTop: '1px solid rgba(47,123,255,0.28)', fontFamily: 'var(--font-utility)', fontSize: 'clamp(10px, 2.4vw, 12px)', letterSpacing: '0.14em', textTransform: 'uppercase', color: CF_META }}
           >
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><CalendarDays size={12} /> 1 Oct 9 AM → 2 Oct 9 AM</span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><MapPin size={12} /> Online · RGIT Mumbai</span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}><Trophy size={12} /> Prizes 9 Oct</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}><CalendarDays size={16} color={BLUE} /> 1 Oct 9 AM - 2 Oct 9 AM</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}><MapPin size={16} color={BLUE} /> Online · RGIT Mumbai</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}><Trophy size={16} color={BLUE} /> Prizes 9 Oct</span>
           </motion.div>
         </div>
       </section>
@@ -448,11 +494,16 @@ export default function CyberflareClient() {
       <Faq />
 
       <style jsx global>{`
-        .cf-hero-mobile { display: none; }
-        .cf-hero-desktop { display: block; }
+        .cf-flag-desktop { display: none; }
+        .cf-flag-mobile { display: block; }
+        @media (min-width: 641px) {
+          .cf-flag-desktop { display: block; }
+          .cf-flag-mobile { display: none; }
+          .cf-hero-shade { background: linear-gradient(to right, rgba(2,4,9,0.88) 0%, rgba(2,4,9,0.55) 42%, rgba(2,4,9,0.08) 68%, rgba(2,4,9,0.45) 100%) !important; }
+        }
         @media (max-width: 640px) {
-          .cf-hero-desktop { display: none; }
-          .cf-hero-mobile { display: block; }
+          .cf-rail { display: none; }
+          .cf-rail-mark { display: none; }
         }
         .cf-marquee { animation: cf-marquee 28s linear infinite; }
         @keyframes cf-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }

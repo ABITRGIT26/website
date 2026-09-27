@@ -1,5 +1,13 @@
 import type { Metadata } from 'next';
+import { Press_Start_2P } from 'next/font/google';
 import CyberflareClient from './CyberflareClient';
+
+const pixel = Press_Start_2P({
+  subsets: ['latin'],
+  variable: '--font-pixel',
+  weight: ['400'],
+  display: 'swap',
+});
 
 const SITE_URL = 'https://rgitabit.in';
 
@@ -34,5 +42,9 @@ export const metadata: Metadata = {
 };
 
 export default function CyberflarePage() {
-  return <CyberflareClient />;
+  return (
+    <div className={pixel.variable}>
+      <CyberflareClient />
+    </div>
+  );
 }
