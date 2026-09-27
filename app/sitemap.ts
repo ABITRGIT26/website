@@ -17,6 +17,8 @@ const staticRoutes: RouteDef[] = [
   { path: '/about', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/events', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/synergy', changeFrequency: 'weekly', priority: 0.9 },
+  { path: '/cyberflare', changeFrequency: 'weekly', priority: 0.9 },
+  { path: '/cyberflare/register', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/codeastra', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/sharkathon', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/team', changeFrequency: 'monthly', priority: 0.7 },

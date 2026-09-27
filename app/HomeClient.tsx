@@ -167,6 +167,16 @@ export default function HomeClient() {
             <motion.span
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              style={{ display: 'inline-flex' }}
+            >
+              <Link href="/cyberflare" className="btn-editorial btn-on-dark hero-cta hero-cta-primary">
+                Cyberflare · Register Free <span className="arr" aria-hidden="true" style={{ display: 'inline-flex' }}><ArrowRight size={14} /></span>
+              </Link>
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
               style={{ display: 'inline-flex' }}
             >

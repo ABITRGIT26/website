@@ -58,8 +58,9 @@ export default function Navbar() {
   }, []);
 
   if (pathname?.startsWith('/sharkathon')) return null;
-  // Register flow keeps its own minimal header.
+  // Register flows keep their own minimal header.
   if (pathname?.startsWith('/codeastra/register')) return null;
+  if (pathname?.startsWith('/cyberflare/register')) return null;
 
   // Floating pill replaces CodeastraNav on the Codeastra page.
   const isCodeastra = pathname === '/codeastra';

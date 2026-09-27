@@ -75,15 +75,16 @@ export const events: Event[] = [
   {
     slug: 'cyberflare-3-0',
     title: 'Cyberflare 3.0',
-    tagline: 'SYNERGY Phase 1 Security + CTF.',
+    tagline: 'Think. Hack. Capture the Flag.',
     description:
-      'Fundamentals of cyber security, Linux, network security & tools, ethical hacking and a 24-hour CTF platform.',
-    date: 'November 2026',
-    location: 'RGIT Labs',
+      'ABIT × Hacktify Cybersecurity present CYBERFLARE 3.0 — a 24-hour online Capture The Flag with real-world cybersecurity challenges. Free entry. Top 3 win goodies, internship opportunities & certificates.',
+    date: '1–2 Oct 2026',
+    location: 'Online',
     category: 'hackathon',
-    image: '/events/synergy.jpg',
-    href: '/synergy',
-    highlights: ['Phase 1', 'Cybersecurity', '24-hr CTF'],
+    image: '/cyberflare-hero-desktop.png',
+    registrationLink: '/cyberflare/register',
+    href: '/cyberflare',
+    highlights: ['24-hr CTF', 'Free Entry', 'Top 3 Prizes'],
     upcoming: true,
   },
   {
