@@ -12,6 +12,8 @@ const PAPER = '#F4F1E8';
 
 const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/CcWF8UVv0QL0DRKIgEQwis';
 
+const REGISTRATION_CLOSED = true;
+
 function StepBar({ current, total }: { current: number; total: number }) {
   const labels = ['Contact', 'Academic', 'Review'];
   return (
@@ -303,6 +305,26 @@ function RegisterForm() {
   );
 }
 
+function RegistrationClosed() {
+  return (
+    <div style={{ border: '1px solid rgba(244,241,232,0.16)', background: 'rgba(244,241,232,0.03)', padding: '56px 28px', textAlign: 'center' }}>
+      <div style={{ width: 64, height: 64, border: `1px solid ${BLUE}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+        <ShieldCheck size={30} color={BLUE} />
+      </div>
+      <h2 style={{ fontSize: 'clamp(1.6rem, 4.5vw, 2.4rem)', fontWeight: 900, textTransform: 'uppercase', lineHeight: 1, margin: '0 0 14px' }}>
+        Registration closed
+      </h2>
+      <p style={{ color: 'rgba(244,241,232,0.6)', fontSize: 15, lineHeight: 1.75, maxWidth: 460, margin: '0 auto 28px' }}>
+        Entries for CYBERFLARE 3.0 are now closed. Registered players will receive the
+        platform link and briefing via email before 1 Oct, 9:00 AM.
+      </p>
+      <Link href="/cyberflare" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, background: PAPER, color: INK, fontWeight: 800, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '15px 28px' }}>
+        ← Back to Cyberflare
+      </Link>
+    </div>
+  );
+}
+
 export default function RegisterClient() {
   return (
     <div className="cf-reg" style={{ minHeight: '100vh', background: INK, color: PAPER, fontFamily: 'var(--font-inter-tight, "Inter Tight", sans-serif)' }}>
@@ -322,7 +344,7 @@ export default function RegisterClient() {
       <main style={{ maxWidth: 720, margin: '0 auto', padding: '64px 24px 96px' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
           <p style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(244,241,232,0.45)', marginBottom: 14 }}>
-            Registration · Free · Online
+            {REGISTRATION_CLOSED ? 'Registration · Closed' : 'Registration · Free · Online'}
           </p>
           <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, textTransform: 'uppercase', lineHeight: 0.95, margin: '0 0 10px' }}>
             Capture the flag<span style={{ color: BLUE }}>.</span>
@@ -333,7 +355,7 @@ export default function RegisterClient() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1, ease }}>
-          <RegisterForm />
+          {REGISTRATION_CLOSED ? <RegistrationClosed /> : <RegisterForm />}
         </motion.div>
       </main>
 
