@@ -94,7 +94,7 @@ function Faq() {
     { q: 'Where and when is it?', a: 'Fully online. The 24-hour CTF runs 1st Oct, 9:00 AM – 2nd Oct, 9:00 AM. Prize distribution ceremony is on 9th Oct 2026.' },
     { q: 'How much does it cost?', a: 'Registration is FREE. Just register, join the briefing channel, and play.' },
     { q: 'What do winners get?', a: 'Top 3 winners receive goodies, internship opportunities with Hacktify Cybersecurity, plus certificates. All participants get certificates.' },
-    { q: 'Solo or team?', a: 'Play solo or as a team (check the registration form for team options). Real-world cybersecurity challenges — competitive and skill-based.' },
+    { q: 'Solo only?', a: 'Solo only — every player competes individually. Real-world cybersecurity challenges — competitive and skill-based.' },
     { q: 'Whom do I contact?', a: 'Swara Yerunkar (+91 99306 83537) or Faizan Shaikh (+91 87794 76766).' },
   ];
   const [open, setOpen] = useState<number | null>(0);
