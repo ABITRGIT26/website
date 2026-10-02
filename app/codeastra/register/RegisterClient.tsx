@@ -151,7 +151,7 @@ const DOMAIN_TABS: { key: PSDomainKey; short: string }[] = [
   { key: 'web', short: 'Web & Product' },
   { key: 'ai', short: 'AI & ML' },
   { key: 'cloud', short: 'Cloud & Systems' },
-  { key: 'cyber', short: 'Cybersecurity' },
+  { key: 'cyber', short: 'Cyber & Blockchain' },
 ];
 
 function ProblemPicker({

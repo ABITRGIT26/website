@@ -21,7 +21,7 @@ export const events: Event[] = [
     tagline: 'Beyond the Code.',
     description:
       'A 24-hour offline hackathon under SYNERGY. Build real solutions, adapt when the challenge changes, collaborate beyond your domain and prove it with a live demo. ₹1,00,000 total prize pool (₹40,000 1st, ₹28,000 2nd, ₹20,000 3rd, ₹12,000 Convergence).',
-    date: 'December 2026',
+    date: '12–13 October 2026',
     location: 'RGIT, Andheri West, Mumbai',
     category: 'flagship',
     image: '/events/codeastra.jpg',

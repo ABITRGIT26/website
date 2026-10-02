@@ -58,7 +58,7 @@ export const phases: SynergyPhase[] = [
       },
       {
         title: 'CodeAstra',
-        date: 'December 2026',
+        date: '12–13 October 2026',
         venue: 'RGIT, Andheri West, Mumbai',
         blurb: '24-hour offline hackathon build, adapt, collaborate and prove beyond the code. ₹1,00,000 prize pool (40K + 28K + 20K + 12K Convergence).',
       },

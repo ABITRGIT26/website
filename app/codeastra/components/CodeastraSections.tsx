@@ -130,7 +130,7 @@ export function DomainsSection() {
     { icon: Code2, n: '01', t: 'Web & Product Development', b: 'Build functional digital products, platforms and web applications that solve real-world problems.' },
     { icon: BrainCircuit, n: '02', t: 'AI & ML', b: 'Create intelligent solutions using artificial intelligence, machine learning, generative AI, computer vision, NLP and intelligent automation.' },
     { icon: Cloud, n: '03', t: 'Cloud Computing & Distributed Systems', b: 'Design scalable systems across cloud platforms, distributed architectures, microservices, load balancing, databases and resilient infrastructure.' },
-    { icon: ShieldCheck, n: '04', t: 'Cybersecurity & Digital Trust', b: 'Build secure systems and explore cybersecurity, privacy, digital identity, threat detection and trusted digital infrastructure.' },
+    { icon: ShieldCheck, n: '04', t: 'Cybersecurity & Blockchain', b: 'Build secure systems and explore cybersecurity, blockchain, privacy, digital identity, threat detection and trusted digital infrastructure.' },
   ];
   return (
     <section id="domains" style={{ background: 'var(--cb-bg-alt)', color: 'var(--cb-text)', borderTop: '1px solid var(--cb-border)' }}>
@@ -418,7 +418,7 @@ export function RegisterSection() {
             </a>
           </div>
           <p style={{ marginTop: 26, fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cb-text-dim)' }}>
-            ₹1,00,000 total pool · RGIT, Andheri West, Mumbai · 1st week of October
+            ₹1,00,000 total pool · RGIT, Andheri West, Mumbai · 12–13 October 2026
           </p>
         </Reveal>
       </div>
@@ -429,8 +429,8 @@ export function RegisterSection() {
 export function FaqSection() {
   const faqs = [
     { q: 'Who can participate?', a: 'Students and young developers. Teams qualify through online selection: registration → idea submission → screening → shortlisting.' },
-    { q: 'Where and when is it?', a: 'RGIT, Andheri West, Mumbai  1st week of October, under SYNERGY 2027. The hackathon itself is a 24-hour offline sprint.' },
-    { q: 'What are the domains?', a: 'Web & Product Development, AI & ML, Cloud Computing & Distributed Systems, and Cybersecurity & Digital Trust.' },
+    { q: 'Where and when is it?', a: 'RGIT, Andheri West, Mumbai  12–13 October 2026, under SYNERGY 2027. The hackathon itself is a 24-hour offline sprint.' },
+    { q: 'What are the domains?', a: 'Web & Product Development, AI & ML, Cloud Computing & Distributed Systems, and Cybersecurity & Blockchain.' },
     { q: 'What is Convergence?', a: 'You are paired with another team preferably from a different domain and must integrate part of each other’s solution. A dedicated ₹12,000 prize rewards the best integration.' },
     { q: 'How are we judged?', a: 'Live demo + jury Q&A. Technical Execution (25%), Problem Understanding (20%), Innovation (20%), Functionality & Reliability (20%), Impact & Scalability (15%).' },
     { q: 'What do winners get?', a: 'Cash prizes from the ₹1,00,000 pool — 1st place takes the Brahmastra — plus internship opportunities with our industry partners and incubation support to take the strongest ideas further.' },

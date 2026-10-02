@@ -200,7 +200,7 @@ export default function CodeastraHero({ ready }: { ready: boolean }) {
           }}
         >
           {[
-            ['Date', '1st week of October 2027'],
+            ['Date', '12–13 October 2026'],
             ['Venue', 'RGIT, Andheri West, Mumbai'],
             ['Format', '24 hours · Offline · 7 phases'],
             ['Prize pool', '₹1,00,000 total'],

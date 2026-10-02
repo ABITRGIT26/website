@@ -16,14 +16,14 @@ export const psDomains: { key: PSDomainKey | 'all'; label: string }[] = [
   { key: 'web', label: 'Web & Product Development' },
   { key: 'ai', label: 'AI & ML' },
   { key: 'cloud', label: 'Cloud Computing & Distributed Systems' },
-  { key: 'cyber', label: 'Cybersecurity & Digital Trust' },
+  { key: 'cyber', label: 'Cybersecurity & Blockchain' },
 ];
 
 export const psDomainLabel: Record<PSDomainKey, string> = {
   web: 'Web & Product Development',
   ai: 'AI & ML',
   cloud: 'Cloud Computing & Distributed Systems',
-  cyber: 'Cybersecurity & Digital Trust',
+  cyber: 'Cybersecurity & Blockchain',
 };
 
 export const problemStatements: ProblemStatement[] = [
@@ -49,7 +49,7 @@ export const problemStatements: ProblemStatement[] = [
     brief:
       'Design an intelligent cloud operations platform that continuously observes infrastructure, detects anomalies, predicts failures and recommends or executes corrective actions.',
   },
-  // Cybersecurity & Digital Trust
+  // Cybersecurity & Blockchain
   {
     id: 'cyber-1',
     domain: 'cyber',

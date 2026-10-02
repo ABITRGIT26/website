@@ -13,7 +13,7 @@ const DOMAIN_LABELS: Record<string, string> = {
   web: 'Web & Product Development',
   ai: 'AI & ML',
   cloud: 'Cloud Computing & Distributed Systems',
-  cyber: 'Cybersecurity & Digital Trust',
+  cyber: 'Cybersecurity & Blockchain',
 };
 
 export async function POST(request: Request) {
