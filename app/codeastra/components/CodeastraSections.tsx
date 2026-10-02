@@ -248,20 +248,22 @@ export function TrialsSection() {
   return (
     <section id="trials" style={{ background: 'var(--cb-bg-alt)', color: 'var(--cb-text)', borderTop: '1px solid var(--cb-border)' }}>
       <div style={wrap}>
-        <Head label="Chakravyūh · Trial & reward" title={<>The twists<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="Two moments where the plan breaks on purpose. The teams that adapt, win." />
+        <Head label="Chakravyūh · Trial & reward" title={<>One trial. One reward<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="The plan breaks on purpose mid-build. The teams that adapt earn the Brahmastra." />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 48 }} className="codeastra-grid-2">
-          {[
-            { t: 'Trial & Reward', b: '4 domains → 4 trials → 4 rewards. A domain-specific challenge lands mid-build with a limited clock. The best team in each domain earns a strategic advantage for the final stage.' },
-            { t: 'Chakravyūh', b: 'The unexpected turn. Requirements shift, constraints tighten, and roadmaps get tested. This is the Adapt pillar  resolve under pressure instead of rehearsing perfection.' },
-          ].map((c, i) => (
-            <Reveal key={c.t} delay={i * 0.07}>
-              <div style={{ ...cardStyle, minHeight: 300 }}>
-                <p style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--cb-accent)', margin: '0 0 12px' }}>Twist 0{i + 1}</p>
-                <h3 style={{ fontSize: '1.5rem', textTransform: 'uppercase', margin: '0 0 12px' }}>{c.t}</h3>
-                <p style={{ color: 'var(--cb-text-muted)', lineHeight: 1.7, fontSize: 15, margin: 0 }}>{c.b}</p>
-              </div>
-            </Reveal>
-          ))}
+          <Reveal>
+            <div style={{ ...cardStyle, minHeight: 300 }}>
+              <p style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--cb-accent)', margin: '0 0 12px' }}>Twist 01</p>
+              <h3 style={{ fontSize: '1.5rem', textTransform: 'uppercase', margin: '0 0 12px' }}>Chakravyūh</h3>
+              <p style={{ color: 'var(--cb-text-muted)', lineHeight: 1.7, fontSize: 15, margin: 0 }}>The Trial &amp; Reward round. A domain-specific challenge lands mid-build with a limited clock  requirements shift, constraints tighten, and roadmaps get tested. Resolve under pressure instead of rehearsing perfection.</p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div style={{ ...cardStyle, minHeight: 300, borderColor: 'var(--cb-accent)' }}>
+              <p style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--cb-accent)', margin: '0 0 12px' }}>The reward</p>
+              <h3 style={{ fontSize: '1.5rem', textTransform: 'uppercase', margin: '0 0 12px' }}>Brahmastra</h3>
+              <p style={{ color: 'var(--cb-text-muted)', lineHeight: 1.7, fontSize: 15, margin: 0 }}>The ultimate reward of the Trial &amp; Reward round. The best team in each domain unlocks the Brahmastra  a decisive strategic advantage heading into the final stage.</p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -319,7 +321,7 @@ export function PrizesSection() {
   return (
     <section id="prizes" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)' }}>
       <div style={wrap}>
-        <Head label="Judging & winning" title={<>₹1,00,000 on the table<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="₹88,000 main prize pool (₹40,000 + ₹28,000 + ₹20,000) + ₹12,000 Convergence prize. Winners also unlock internship and incubation opportunities. Live demo in front of the jury no pre-recorded walkthroughs." />
+        <Head label="Judging & winning" title={<>₹1,00,000 on the table<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="₹88,000 main prize pool (₹40,000 + ₹28,000 + ₹20,000) + ₹12,000 Convergence prize. The 1st place takes the Brahmastra, and winners unlock internship and incubation opportunities. Live demo in front of the jury no pre-recorded walkthroughs." />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginTop: 48 }} className="codeastra-grid-4">
           {tiers.map((t, i) => (
             <Reveal key={t.p} delay={i * 0.07}>
@@ -328,6 +330,11 @@ export function PrizesSection() {
                 <h3 style={{ fontSize: '2.4rem', margin: '0 0 10px', color: i === 0 ? 'var(--cb-accent)' : 'var(--cb-text)' }}>{t.a}</h3>
                 <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'var(--cb-text-muted)' }}>{t.d}</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 14 }}>
+                  {i === 0 && (
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--cb-accent)', color: 'var(--cb-accent-text)', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 8px' }}>
+                      <Trophy size={11} /> Brahmastra
+                    </span>
+                  )}
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, border: '1px solid var(--cb-accent)', color: 'var(--cb-accent)', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 8px' }}>
                     <Briefcase size={11} /> Internship
                   </span>
@@ -426,7 +433,7 @@ export function FaqSection() {
     { q: 'What are the domains?', a: 'Web & Product Development, AI & ML, Cloud Computing & Distributed Systems, and Cybersecurity & Digital Trust.' },
     { q: 'What is Convergence?', a: 'You are paired with another team preferably from a different domain and must integrate part of each other’s solution. A dedicated ₹12,000 prize rewards the best integration.' },
     { q: 'How are we judged?', a: 'Live demo + jury Q&A. Technical Execution (25%), Problem Understanding (20%), Innovation (20%), Functionality & Reliability (20%), Impact & Scalability (15%).' },
-    { q: 'What do winners get?', a: 'Cash prizes from the ₹1,00,000 pool, plus internship opportunities with our industry partners and incubation support to take the strongest ideas further.' },
+    { q: 'What do winners get?', a: 'Cash prizes from the ₹1,00,000 pool — 1st place takes the Brahmastra — plus internship opportunities with our industry partners and incubation support to take the strongest ideas further.' },
     { q: 'What should we bring?', a: 'Your team, your machines, and a working mindset. Mentorship, technical support and the chaos  we provide those.' },
   ];
   const [open, setOpen] = useState<number | null>(0);
