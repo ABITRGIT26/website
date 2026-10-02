@@ -709,8 +709,8 @@ function RegisterForm() {
               <input name="ideaTech" value={f.ideaTech} onChange={set} required type="text" placeholder="e.g. Next.js, Python, TensorFlow" style={inp} />
             </div>
             <div>
-              <label style={label}>Presentation link <span style={{ color: 'var(--cb-text-dim)' }}>(optional)</span></label>
-              <input name="pitchDeck" value={f.pitchDeck} onChange={set} type="url" inputMode="url" placeholder="https://drive.google.com/... (shareable Drive link to your PPT/slides)" style={inp} />
+              <label style={label}>Presentation link</label>
+              <input name="pitchDeck" value={f.pitchDeck} onChange={set} required type="url" inputMode="url" placeholder="https://drive.google.com/... (shareable Drive link to your PPT/slides)" style={inp} />
               <p style={{ margin: '8px 0 0', fontFamily: 'var(--font-utility)', fontSize: 12, lineHeight: 1.6, color: 'var(--cb-text-dim)' }}>
                 Paste a Google Drive link to your presentation or pitch deck. Make sure link sharing is on (“Anyone with the link can view”).
               </p>
