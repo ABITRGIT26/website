@@ -32,6 +32,7 @@ const codeastraLinks = [
   { href: '#convergence', label: 'Convergence' },
   { href: '#prizes', label: 'Prizes' },
   { href: '#faq', label: 'FAQ' },
+  { href: '#resources', label: 'Resources' },
 ];
 
 export default function Navbar() {
@@ -182,7 +183,6 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          {/* CODEASTRA hidden for main ABIT launch
           {!isCodeastra && (
             <Link
               href="/codeastra"
@@ -210,7 +210,6 @@ export default function Navbar() {
               Codeastra
             </Link>
           )}
-          */}
           <Link
             href={isCodeastra ? '/codeastra/register' : '/join'}
             className="site-pill-cta"
@@ -369,7 +368,6 @@ export default function Navbar() {
                     ))}
                   </ul>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: 8, paddingTop: 0 }}>
-                    {/* CODEASTRA hidden for main ABIT launch
                     <Link
                       href="/codeastra"
                       style={{
@@ -389,7 +387,6 @@ export default function Navbar() {
                     >
                       Codeastra
                     </Link>
-                    */}
                     <Link
                       href="/join"
                       style={{

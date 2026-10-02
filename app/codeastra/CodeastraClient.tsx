@@ -19,6 +19,7 @@ import {
   ExperienceSection,
   RegisterSection,
   FaqSection,
+  ResourcesSection,
   GridsStyle,
 } from './components/CodeastraSections';
 
@@ -123,6 +124,7 @@ export default function CodeastraClient() {
         <ExperienceSection />
         <RegisterSection />
         <FaqSection />
+        <ResourcesSection />
       </motion.main>
       <CodeastraFooter />
       <GridsStyle />

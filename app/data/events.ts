@@ -15,21 +15,20 @@ export interface Event {
 }
 
 export const events: Event[] = [
-  // CODEASTRA hidden for main ABIT launch
-  // {
-  //   slug: 'codeastra-2.0',
-  //   title: 'CODEASTRA',
-  //   tagline: 'Beyond the Code.',
-  //   description:
-  //     'A 24-hour offline hackathon under SYNERGY. Build real solutions, adapt when the challenge changes, collaborate beyond your domain and prove it with a live demo. ₹1,15,000 total prize pool (₹50,000 1st, ₹30,000 2nd, ₹20,000 3rd, ₹15,000 Convergence).',
-  //   date: 'December 2026',
-  //   location: 'RGIT, Andheri West, Mumbai',
-  //   category: 'flagship',
-  //   image: '/events/codeastra.jpg',
-  //   href: '/codeastra',
-  //   highlights: ['24 Hours', '4 Domains', '₹1,15,000 Prize Pool', '8 Phases'],
-  //   upcoming: true,
-  // },
+  {
+    slug: 'codeastra-2.0',
+    title: 'CODEASTRA',
+    tagline: 'Beyond the Code.',
+    description:
+      'A 24-hour offline hackathon under SYNERGY. Build real solutions, adapt when the challenge changes, collaborate beyond your domain and prove it with a live demo. ₹1,00,000 total prize pool (₹40,000 1st, ₹28,000 2nd, ₹20,000 3rd, ₹12,000 Convergence).',
+    date: 'December 2026',
+    location: 'RGIT, Andheri West, Mumbai',
+    category: 'flagship',
+    image: '/events/codeastra.jpg',
+    href: '/codeastra',
+    highlights: ['24 Hours', '4 Domains', '₹1,00,000 Prize Pool', '7 Phases'],
+    upcoming: true,
+  },
   {
     slug: 'campus-cup-season-2',
     title: 'Campus Cup Season 2 Free Fire',
@@ -103,7 +102,7 @@ export const events: Event[] = [
   },
 ];
 
-/* Curated Upcoming: Cyberflare (+ CodeAstra hidden for main ABIT launch). SYNERGY has its own flagship
+/* Curated Upcoming: CodeAstra and Cyberflare. SYNERGY has its own flagship
    card and gaming events live in the Gaming Arena, so they stay out here. */
 export const upcomingEvents = events.filter((e) => e.upcoming);
 export const pastEvents = events.filter((e) => !e.upcoming);

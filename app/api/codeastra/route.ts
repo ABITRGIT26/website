@@ -38,6 +38,7 @@ export async function POST(request: Request) {
       member2: f.member2 ?? '',
       member3: f.member3 ?? '',
       member4: f.member4 ?? '',
+      resumeFolder: f.resumeFolder ?? '',
       ideaTitle: f.ideaTitle ?? '',
       ideaProblem: f.ideaProblem ?? '',
       ideaApproach: f.ideaApproach ?? '',

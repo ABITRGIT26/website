@@ -87,8 +87,7 @@ const stats = [
 const pillars = [
   { icon: Code2, t: 'Learn', b: 'Workshops and bootcamps on web, AI/ML, cloud and more taught hands-on, in RGIT labs.' },
   { icon: Hammer, t: 'Build', b: 'Hack nights, project groups and mentorship that turn coursework into working software.' },
-  // CODEASTRA hidden for main ABIT launch — original: 'Flagships like SYNERGY, Sharkathon and Codeastra stages with real stakes and juries.'
-  { icon: Trophy, t: 'Compete', b: 'Flagships like SYNERGY and Sharkathon stages with real stakes and juries.' },
+  { icon: Trophy, t: 'Compete', b: 'Flagships like SYNERGY, Sharkathon and Codeastra stages with real stakes and juries.' },
   { icon: Users, t: 'Belong', b: 'A department-wide community of builders, designers, organizers and storytellers.' },
 ];
 
@@ -152,7 +151,6 @@ export default function HomeClient() {
             className="hero-ctas"
             style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', position: 'relative', zIndex: 3, marginTop: 'auto', marginBottom: 'clamp(12px, 2vh, 20px)' }}
           >
-            {/* CODEASTRA hidden for main ABIT launch
             <motion.span
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -161,17 +159,6 @@ export default function HomeClient() {
             >
               <Link href="/codeastra" className="btn-editorial btn-on-dark hero-cta hero-cta-primary">
                 Codeastra · Register <span className="arr" aria-hidden="true" style={{ display: 'inline-flex' }}><ArrowRight size={14} /></span>
-              </Link>
-            </motion.span>
-            */}
-            <motion.span
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              style={{ display: 'inline-flex' }}
-            >
-              <Link href="/cyberflare" className="btn-editorial btn-on-dark hero-cta hero-cta-primary">
-                Cyberflare · Register Free <span className="arr" aria-hidden="true" style={{ display: 'inline-flex' }}><ArrowRight size={14} /></span>
               </Link>
             </motion.span>
             <motion.span

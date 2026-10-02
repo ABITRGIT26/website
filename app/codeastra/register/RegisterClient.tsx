@@ -3,12 +3,10 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, ArrowLeft, Check, ChevronDown, MessageCircle } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check, ChevronDown, Download, FileText, MessageCircle } from 'lucide-react';
 import ThemeProvider from '../components/ThemeProvider';
-import { problemStatements, psById, psDomainLabel } from '../data/problemStatements';
-
-// TODO: replace with the real WhatsApp group invite link
-const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/REPLACE_WITH_REAL_INVITE_LINK';
+import { problemStatements, psById, psDomainLabel, type ProblemStatement, type PSDomainKey } from '../data/problemStatements';
+import { codeastraResources, CODEASTRA_WHATSAPP_URL } from '../data/resources';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -79,7 +77,7 @@ function BeyondIntro({ onDone }: { onDone: () => void }) {
 
 /* ── Step indicator ── */
 function StepBar({ current, total }: { current: number; total: number }) {
-  const labels = ['Info', 'Team', 'Idea', 'Final'];
+  const labels = ['Info', 'Resources', 'Problem', 'Team', 'Idea', 'Final'];
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 40, position: 'relative', padding: '0 4px' }}>
       <div style={{ position: 'absolute', top: 14, left: 0, right: 0, height: 2, background: 'var(--cb-border)', zIndex: 1 }} />
@@ -144,6 +142,212 @@ function FieldSelect({
           color: 'var(--cb-text-dim)',
         }}
       />
+    </div>
+  );
+}
+
+/* ── Problem statement picker ── */
+const DOMAIN_TABS: { key: PSDomainKey; short: string }[] = [
+  { key: 'web', short: 'Web & Product' },
+  { key: 'ai', short: 'AI & ML' },
+  { key: 'cloud', short: 'Cloud & Systems' },
+  { key: 'cyber', short: 'Cybersecurity' },
+];
+
+function ProblemPicker({
+  value,
+  onChange,
+  onClearError,
+}: {
+  value: string;
+  onChange: (ps: ProblemStatement) => void;
+  onClearError: () => void;
+}) {
+  const [domain, setDomain] = useState<PSDomainKey>(() => (value && psById[value]?.domain) || 'web');
+  const selected = value ? psById[value] : undefined;
+  const list = problemStatements.filter((ps) => ps.domain === domain);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.25rem, 3vw, 1.6rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.01em', margin: '0 0 8px' }}>
+          Pick your problem statement for online round
+        </h2>
+        <p style={{ color: 'var(--cb-text-muted)', fontSize: 13.5, lineHeight: 1.7, margin: 0, maxWidth: 520 }}>
+          Choose a domain, then select the statement your team will build at CodeAstra.
+        </p>
+      </div>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        {DOMAIN_TABS.map((t) => {
+          const active = t.key === domain;
+          return (
+            <button
+              key={t.key}
+              type="button"
+              onClick={() => setDomain(t.key)}
+              className="ps-tab"
+              style={{
+                background: active ? 'var(--cb-accent)' : 'var(--cb-card-bg)',
+                color: active ? 'var(--cb-accent-text)' : 'var(--cb-text-muted)',
+                border: `1px solid ${active ? 'var(--cb-accent)' : 'var(--cb-card-border)'}`,
+                padding: '9px 14px',
+                fontFamily: 'var(--font-utility)',
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+              }}
+            >
+              {t.short}
+            </button>
+          );
+        })}
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }} className="ps-grid">
+        {list.map((ps, i) => {
+          const isSel = ps.id === value;
+          return (
+            <button
+              key={ps.id}
+              type="button"
+              aria-pressed={isSel}
+              onClick={() => { onChange(ps); onClearError(); }}
+              className="ps-card"
+              style={{
+                position: 'relative',
+                textAlign: 'left',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 10,
+                padding: 18,
+                background: isSel ? 'var(--cb-card-bg)' : 'transparent',
+                border: `1px solid ${isSel ? 'var(--cb-accent)' : 'var(--cb-card-border)'}`,
+                color: 'var(--cb-text)',
+                cursor: 'pointer',
+              }}
+            >
+              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, color: isSel ? 'var(--cb-accent)' : 'var(--cb-text-dim)' }}>
+                PS {String(i + 1).padStart(2, '0')}
+                {isSel && (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20, background: 'var(--cb-accent)', color: 'var(--cb-accent-text)' }}>
+                    <Check size={12} />
+                  </span>
+                )}
+              </span>
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15, lineHeight: 1.35, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>
+                {ps.title}
+              </span>
+              <span style={{ fontFamily: 'var(--font-utility)', fontSize: 12.5, lineHeight: 1.65, color: 'var(--cb-text-muted)' }}>
+                {ps.brief}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10, border: '1px solid var(--cb-card-border)', background: 'var(--cb-card-bg)', padding: '13px 16px' }}>
+        <Check size={14} color={selected ? 'var(--cb-accent)' : 'var(--cb-text-dim)'} />
+        <span style={{ fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, color: selected ? 'var(--cb-text)' : 'var(--cb-text-dim)' }}>
+          {selected ? selected.title : 'No problem statement selected yet'}
+        </span>
+        {selected && (
+          <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--cb-text-muted)' }}>
+            {psDomainLabel[selected.domain]}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Resources + confirmations step ── */
+function CheckRow({ checked, onToggle, children }: { checked: boolean; onToggle: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={checked}
+      onClick={onToggle}
+      style={{
+        width: '100%', display: 'flex', alignItems: 'flex-start', gap: 12, textAlign: 'left',
+        background: checked ? 'var(--cb-card-bg)' : 'transparent',
+        border: `1px solid ${checked ? 'var(--cb-accent)' : 'var(--cb-card-border)'}`,
+        padding: '14px 16px', cursor: 'pointer', color: 'var(--cb-text)',
+        transition: 'border-color 160ms ease, background 160ms ease',
+      }}
+    >
+      <span
+        style={{
+          width: 22, height: 22, flexShrink: 0, marginTop: 1,
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          border: `1px solid ${checked ? 'var(--cb-accent)' : 'var(--cb-border-strong)'}`,
+          background: checked ? 'var(--cb-accent)' : 'transparent',
+          color: 'var(--cb-accent-text)',
+        }}
+      >
+        {checked && <Check size={14} />}
+      </span>
+      <span style={{ fontFamily: 'var(--font-utility)', fontSize: 13, lineHeight: 1.6 }}>{children}</span>
+    </button>
+  );
+}
+
+function ResourcesStep({
+  readRules, joinedWa, onReadRules, onJoinedWa,
+}: {
+  readRules: boolean;
+  joinedWa: boolean;
+  onReadRules: () => void;
+  onJoinedWa: () => void;
+}) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.25rem, 3vw, 1.6rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.01em', margin: '0 0 8px' }}>
+          Read up. Then lock in.
+        </h2>
+        <p style={{ color: 'var(--cb-text-muted)', fontSize: 13.5, lineHeight: 1.7, margin: 0, maxWidth: 520 }}>
+          Download the rulebook, problem statements and the PPT template — everything you need before you build.
+        </p>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {codeastraResources.map((r) => (
+          <div key={r.href} style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap', border: '1px solid var(--cb-card-border)', background: 'var(--cb-card-bg)', padding: '14px 16px' }}>
+            <span style={{ width: 40, height: 40, flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--cb-card-border)', color: 'var(--cb-accent)' }}>
+              <FileText size={18} />
+            </span>
+            <span style={{ flex: 1, minWidth: 170 }}>
+              <span style={{ display: 'block', fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 13.5, letterSpacing: '0.01em' }}>{r.label}</span>
+              <span style={{ display: 'block', fontFamily: 'var(--font-utility)', fontSize: 12, lineHeight: 1.6, color: 'var(--cb-text-muted)', marginTop: 3 }}>{r.description}</span>
+            </span>
+            <a href={r.href} download className="res-download" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, border: '1px solid var(--cb-border-strong)', color: 'var(--cb-text)', fontWeight: 800, fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '11px 14px', whiteSpace: 'nowrap' }}>
+              <Download size={13} /> {r.kind}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <a
+        href={CODEASTRA_WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, background: 'var(--cb-accent)', color: 'var(--cb-accent-text)', fontWeight: 800, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', padding: 15, textAlign: 'center' }}
+      >
+        <MessageCircle size={16} /> Join the CodeAstra WhatsApp group
+      </a>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <CheckRow checked={readRules} onToggle={onReadRules}>
+          I have read all of the above rulebooks and terms &amp; conditions.
+        </CheckRow>
+        <CheckRow checked={joinedWa} onToggle={onJoinedWa}>
+          I have joined the CodeAstra WhatsApp group.
+        </CheckRow>
+      </div>
     </div>
   );
 }
@@ -235,7 +439,7 @@ function SubmitSuccess({ teamId, email }: { teamId: string; email: string }) {
             ← Back to Codeastra
           </Link>
           <a
-            href={WHATSAPP_GROUP_URL}
+            href={CODEASTRA_WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -260,46 +464,65 @@ function SubmitSuccess({ teamId, email }: { teamId: string; email: string }) {
 function RegisterForm() {
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [teamSize, setTeamSize] = useState(2);
+  const [gateError, setGateError] = useState(false);
+  const [readRules, setReadRules] = useState(false);
+  const [joinedWa, setJoinedWa] = useState(false);
+  const [psError, setPsError] = useState(false);
+  const [teamSize, setTeamSize] = useState(3);
   const [f, setF] = useState({
-    teamName: '', teamSize: '2', domain: '', psId: '', email: '', phone: '',
+    teamName: '', teamSize: '3', domain: '', psId: '', email: '', phone: '',
     collegeName: '', engYear: 'TE',
-    teamLead: '', member2: '', member3: '', member4: '',
+    teamLead: '', member2: '', member3: '', member4: '', resumeFolder: '',
     ideaTitle: '', ideaProblem: '', ideaApproach: '', ideaTech: '', pitchDeck: '',
     referral: '', additionalInfo: '', extraNote: '', teamId: '',
   });
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setF((p) => {
-      const next = { ...p, [name]: value };
-      // Changing domain invalidates a PS picked from another domain
-      if (name === 'domain' && next.psId && psById[next.psId]?.domain !== value) {
-        next.psId = '';
-      }
-      return next;
-    });
+    setF((p) => ({ ...p, [name]: value }));
     if (name === 'teamSize') setTeamSize(parseInt(value));
+  };
+
+  const pickPs = (ps: ProblemStatement) => {
+    setF((p) => ({ ...p, psId: ps.id, domain: ps.domain }));
+    setPsError(false);
+  };
+
+  const toggleReadRules = () => {
+    setReadRules((v) => !v);
+    setGateError(false);
+  };
+  const toggleJoinedWa = () => {
+    setJoinedWa((v) => !v);
+    setGateError(false);
   };
 
   const next = (e: React.MouseEvent<HTMLButtonElement>) => {
     // Validate only the currently visible step's fields before advancing
     const form = e.currentTarget.closest('form');
+    if (step === 2 && (!readRules || !joinedWa)) {
+      setGateError(true);
+      return;
+    }
+    if (step === 3 && !f.psId) {
+      setPsError(true);
+      return;
+    }
     if (form && !form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    setStep((s) => Math.min(s + 1, 4));
+    setStep((s) => Math.min(s + 1, 6));
   };
   const prev = () => setStep((s) => Math.max(1, s - 1));
 
-  // Timestamp of when the user arrived on step 4. Used to swallow ghost
+  // Timestamp of when the user arrived on step 6. Used to swallow ghost
   // submits (double-tap bleed onto the freshly mounted Submit button,
   // mobile keyboard "Go", Enter key-repeat) that fire before the user
   // could possibly have answered Q1/Q2.
-  const step4ArrivedAt = useRef(0);
+  const step6ArrivedAt = useRef(0);
   useEffect(() => {
-    if (step === 4) step4ArrivedAt.current = Date.now();
+    if (step === 6) step6ArrivedAt.current = Date.now();
   }, [step]);
 
   // Kill implicit Enter-submission from text inputs. Textareas keep newline
@@ -309,27 +532,27 @@ function RegisterForm() {
     const t = e.target as HTMLElement;
     if (t.tagName !== 'INPUT') return;
     e.preventDefault();
-    if (step >= 4) return; // step 4: only an explicit Submit click may submit
+    if (step >= 6) return; // step 6: only an explicit Submit click may submit
     const form = e.currentTarget;
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    setStep((s) => Math.min(s + 1, 4));
+    setStep((s) => Math.min(s + 1, 6));
   };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Only submit from the final step. Enter key on earlier steps
     // triggers implicit form submission, advance instead of submitting.
-    if (step !== 4) {
-      setStep((s) => Math.min(s + 1, 4));
+    if (step !== 6) {
+      setStep((s) => Math.min(s + 1, 6));
       return;
     }
     if (status === 'loading') return;
-    // Ignore submits in the first 1.5s on step 4: no one can have read and
+    // Ignore submits in the first 1.5s on step 6: no one can have read and
     // answered Q1/Q2 that fast, so it must be a ghost/accidental submit.
-    if (Date.now() - step4ArrivedAt.current < 1500) return;
+    if (Date.now() - step6ArrivedAt.current < 1500) return;
     setStatus('loading');
     // Generate team ID on submit
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -357,7 +580,7 @@ function RegisterForm() {
 
   return (
     <form onSubmit={submit} onKeyDown={formKeyDown} style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
-      <StepBar current={step} total={4} />
+      <StepBar current={step} total={6} />
 
       <AnimatePresence mode="wait">
         {/* Step 1: Basic Info */}
@@ -371,41 +594,10 @@ function RegisterForm() {
               <div>
                 <label style={label}>Team size</label>
                 <FieldSelect name="teamSize" value={f.teamSize} onChange={set}>
-                  <option value="2">2 members</option>
                   <option value="3">3 members</option>
                   <option value="4">4 members</option>
                 </FieldSelect>
               </div>
-            </div>
-            <div>
-              <label style={label}>Domain</label>
-              <FieldSelect name="domain" value={f.domain} onChange={set} required>
-                <option value="">Select your domain</option>
-                <option value="web">Web & Product Development</option>
-                <option value="ai">AI & ML</option>
-                <option value="cloud">Cloud Computing & Distributed Systems</option>
-                <option value="cyber">Cybersecurity & Digital Trust</option>
-              </FieldSelect>
-            </div>
-            <div>
-              <label style={label}>Problem statement <span style={{ color: 'var(--cb-text-dim)' }}>(optional)</span></label>
-              <FieldSelect name="psId" value={f.psId} onChange={set}>
-                <option value="">Undecided (pick later)</option>
-                {f.domain
-                  ? problemStatements
-                      .filter((ps) => ps.domain === f.domain)
-                      .map((ps) => <option key={ps.id} value={ps.id}>{ps.title}</option>)
-                  : (['web', 'ai', 'cloud', 'cyber'] as const).map((d) => (
-                      <optgroup key={d} label={psDomainLabel[d]}>
-                        {problemStatements
-                          .filter((ps) => ps.domain === d)
-                          .map((ps) => <option key={ps.id} value={ps.id}>{ps.title}</option>)}
-                      </optgroup>
-                    ))}
-              </FieldSelect>
-              <p style={{ margin: '8px 0 0', fontFamily: 'var(--font-utility)', fontSize: 12, lineHeight: 1.6, color: 'var(--cb-text-dim)' }}>
-                Pick a domain first to narrow the list, or browse all twelve statements on the Codeastra page.
-              </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="reg-grid">
               <div>
@@ -420,9 +612,34 @@ function RegisterForm() {
           </motion.div>
         )}
 
-        {/* Step 2: Team Details */}
+        {/* Step 2: Resources + confirmations */}
         {step === 2 && (
           <motion.div key="s2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3, ease }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <ResourcesStep
+              readRules={readRules}
+              joinedWa={joinedWa}
+              onReadRules={toggleReadRules}
+              onJoinedWa={toggleJoinedWa}
+            />
+            {gateError && (
+              <p style={{ margin: 0, color: '#DC2626', fontSize: 13 }}>Please confirm both checkboxes to continue.</p>
+            )}
+          </motion.div>
+        )}
+
+        {/* Step 3: Problem statement */}
+        {step === 3 && (
+          <motion.div key="s3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3, ease }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <ProblemPicker value={f.psId} onChange={pickPs} onClearError={() => setPsError(false)} />
+            {psError && (
+              <p style={{ margin: 0, color: '#DC2626', fontSize: 13 }}>Pick a problem statement to continue.</p>
+            )}
+          </motion.div>
+        )}
+
+        {/* Step 4: Team Details */}
+        {step === 4 && (
+          <motion.div key="s4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3, ease }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="reg-grid">
               <div>
                 <label style={label}>College / University</label>
@@ -443,12 +660,10 @@ function RegisterForm() {
                 <label style={label}>Team lead name</label>
                 <input name="teamLead" value={f.teamLead} onChange={set} required type="text" placeholder="Member 1 (Lead)" style={inp} />
               </div>
-              {teamSize >= 2 && (
-                <div>
-                  <label style={label}>Member 2</label>
-                  <input name="member2" value={f.member2} onChange={set} required type="text" placeholder="Member 2" style={inp} />
-                </div>
-              )}
+              <div>
+                <label style={label}>Member 2</label>
+                <input name="member2" value={f.member2} onChange={set} required type="text" placeholder="Member 2" style={inp} />
+              </div>
             </div>
             {teamSize >= 3 && (
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="reg-grid">
@@ -464,12 +679,19 @@ function RegisterForm() {
                 )}
               </div>
             )}
+            <div>
+              <label style={label}>Resume folder link</label>
+              <input name="resumeFolder" value={f.resumeFolder} onChange={set} required type="url" inputMode="url" placeholder="https://drive.google.com/drive/folders/... (resumes of all members)" style={inp} />
+              <p style={{ margin: '8px 0 0', fontFamily: 'var(--font-utility)', fontSize: 12, lineHeight: 1.6, color: 'var(--cb-text-dim)' }}>
+                Paste a Google Drive folder link containing the CV/resume of every team member (one PDF each). <span style={{ color: 'var(--cb-accent)', fontWeight: 700 }}>This will be used for internship opportunities</span> — add all team members’ CVs to one folder and provide a link that anyone with access can view (“Anyone with the link can view”). Resumes are required for selection.
+              </p>
+            </div>
           </motion.div>
         )}
 
-        {/* Step 3: Project Idea */}
-        {step === 3 && (
-          <motion.div key="s3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3, ease }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {/* Step 5: Project Idea */}
+        {step === 5 && (
+          <motion.div key="s5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3, ease }} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <div>
               <label style={label}>Project title</label>
               <input name="ideaTitle" value={f.ideaTitle} onChange={set} required type="text" placeholder="What will you build?" style={inp} />
@@ -496,9 +718,9 @@ function RegisterForm() {
           </motion.div>
         )}
 
-        {/* Step 4: Final questions */}
-        {step === 4 && (
-          <motion.div key="s4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3, ease }} style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+        {/* Step 6: Final questions */}
+        {step === 6 && (
+          <motion.div key="s6" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3, ease }} style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {/* Q1 */}
             <div style={{ borderBottom: '1px solid var(--cb-card-border)', padding: '24px 0' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 10 }}>
@@ -551,7 +773,7 @@ function RegisterForm() {
             <ArrowLeft size={14} /> Previous
           </button>
         )}
-        {step < 4 ? (
+        {step < 6 ? (
           <button type="button" onClick={next} style={{ flex: 2, background: 'var(--cb-accent)', color: 'var(--cb-accent-text)', border: 0, padding: 15, fontSize: 13, fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Next Step <ArrowRight size={14} />
           </button>
@@ -626,8 +848,14 @@ export default function RegisterClient() {
           background-color: #F4F1E8;
           color: #101010;
         }
+        .ps-card { transition: border-color 160ms ease, background 160ms ease, transform 160ms ease; }
+        .ps-card:hover { border-color: var(--cb-accent) !important; transform: translateY(-2px); }
+        .ps-card[aria-pressed="true"] { box-shadow: inset 0 0 0 1px var(--cb-accent); }
+        .ps-tab:hover { border-color: var(--cb-accent) !important; color: var(--cb-text) !important; }
         @media (max-width: 560px) {
           .reg-grid { grid-template-columns: 1fr !important; }
+          .ps-grid { grid-template-columns: 1fr !important; }
+          .res-download { width: 100%; }
           .step-label-text { display: none !important; }
         }
       `}</style>

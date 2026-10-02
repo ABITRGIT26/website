@@ -56,13 +56,12 @@ export const phases: SynergyPhase[] = [
         venue: 'RGIT Labs',
         blurb: 'Cybersecurity flagship: fundamentals of cyber security, Linux, network security & tools, ethical hacking and a 24-hour CTF platform.',
       },
-      // CODEASTRA hidden for main ABIT launch
-      // {
-      //   title: 'CodeAstra',
-      //   date: 'December 2026',
-      //   venue: 'RGIT, Andheri West, Mumbai',
-      //   blurb: '24-hour offline hackathon build, adapt, collaborate and prove beyond the code. ₹1,15,000 prize pool (50K + 30K + 20K + 15K Convergence).',
-      // },
+      {
+        title: 'CodeAstra',
+        date: 'December 2026',
+        venue: 'RGIT, Andheri West, Mumbai',
+        blurb: '24-hour offline hackathon build, adapt, collaborate and prove beyond the code. ₹1,00,000 prize pool (40K + 28K + 20K + 12K Convergence).',
+      },
     ],
   },
   {

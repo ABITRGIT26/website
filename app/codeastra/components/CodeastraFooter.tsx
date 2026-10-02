@@ -5,7 +5,7 @@ import { ArrowRight, Trophy, Timer, MapPin } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
 const ASSURANCES = [
-  { icon: Trophy, label: '₹1,15,000 prize pool' },
+  { icon: Trophy, label: '₹1,00,000 prize pool' },
   { icon: Timer, label: '24 hours · Offline' },
   { icon: MapPin, label: 'RGIT · Mumbai' },
 ];

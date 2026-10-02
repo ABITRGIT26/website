@@ -5,9 +5,11 @@ import Link from 'next/link';
 import {
   Code2, BrainCircuit, Cloud, ShieldCheck, Hammer, Shuffle,
   Users, Presentation, Trophy, Music4, HeartHandshake, Wrench, ArrowRight, ArrowUpRight,
+  Download, FileText, MessageCircle, Briefcase, Rocket,
 } from 'lucide-react';
 import { useState } from 'react';
 import { problemStatements, psDomains, psDomainLabel, type PSDomainKey } from '../data/problemStatements';
+import { codeastraResources, CODEASTRA_WHATSAPP_URL } from '../data/resources';
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
@@ -47,7 +49,7 @@ const cardStyle: React.CSSProperties = {
 
 export function Marquee() {
   const unit = [
-    'Online Selection', 'Launch', 'Build', 'Title Sponsor Round',
+    'Online Selection', 'Launch', 'Build',
     'Trial & Reward', 'Convergence', 'Final Build', 'Final Launch',
     'Go Beyond the Code',
   ];
@@ -217,16 +219,15 @@ export function JourneySection() {
     { n: '01', t: 'Online Selection', s: 'Registration → Idea Submission → Screening → Shortlisting' },
     { n: '02', t: 'Launch (0 HR)', s: 'Check-in → Opening → Briefing → Problem Reveal' },
     { n: '03', t: 'Build', s: 'Ideation → Development → Testing → Mentorship' },
-    { n: '04', t: 'Title Sponsor Round', s: 'Challenge → Brand Integration → Innovation → Showcase' },
-    { n: '05', t: 'Trial & Reward', s: 'Challenge → Adapt → Perform → Earn' },
-    { n: '06', t: 'Convergence', s: 'Collaborate → Integrate → Demonstrate (₹15,000 Prize)' },
-    { n: '07', t: 'Final Build', s: 'Refine → Test → Deploy → Submit' },
-    { n: '08', t: 'Final Launch (24 HR)', s: 'Live Demo → Jury Q&A → Evaluation → Results' },
+    { n: '04', t: 'Trial & Reward', s: 'Challenge → Adapt → Perform → Earn' },
+    { n: '05', t: 'Convergence', s: 'Collaborate → Integrate → Demonstrate (₹12,000 Prize)' },
+    { n: '06', t: 'Final Build', s: 'Refine → Test → Deploy → Submit' },
+    { n: '07', t: 'Final Launch (24 HR)', s: 'Live Demo → Jury Q&A → Evaluation → Results' },
   ];
   return (
     <section id="journey" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)', borderTop: '1px solid var(--cb-border)' }}>
       <div style={wrap}>
-        <Head label="The Codeastra journey" title={<>8 phases. 24 hours.<br />No hiding<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="From the first idea submission to the final live demo  every phase is designed to push teams further, faster, and beyond what they thought possible in 24 hours." />
+        <Head label="The Codeastra journey" title={<>7 phases. 24 hours.<br />No hiding<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="From the first idea submission to the final live demo  every phase is designed to push teams further, faster, and beyond what they thought possible in 24 hours." />
         <ol style={{ listStyle: 'none', padding: 0, margin: '48px 0 0', display: 'grid', gap: 0, borderTop: '1px solid var(--cb-card-border)' }}>
           {journey.map((j) => (
             <Reveal key={j.n}>
@@ -247,10 +248,9 @@ export function TrialsSection() {
   return (
     <section id="trials" style={{ background: 'var(--cb-bg-alt)', color: 'var(--cb-text)', borderTop: '1px solid var(--cb-border)' }}>
       <div style={wrap}>
-        <Head label="Chakravyūh · Title sponsor · Trial & reward" title={<>The twists<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="Three moments where the plan breaks on purpose. The teams that adapt, win." />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginTop: 48 }} className="codeastra-grid-3">
+        <Head label="Chakravyūh · Trial & reward" title={<>The twists<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="Two moments where the plan breaks on purpose. The teams that adapt, win." />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 48 }} className="codeastra-grid-2">
           {[
-            { t: 'Title Sponsor Round', b: 'A dedicated challenge inspired by the Title Sponsor\u2019s brand, values, products or identity. Revealed during the hackathon: understand → innovate → build → present. Special recognition for the winning team.' },
             { t: 'Trial & Reward', b: '4 domains → 4 trials → 4 rewards. A domain-specific challenge lands mid-build with a limited clock. The best team in each domain earns a strategic advantage for the final stage.' },
             { t: 'Chakravyūh', b: 'The unexpected turn. Requirements shift, constraints tighten, and roadmaps get tested. This is the Adapt pillar  resolve under pressure instead of rehearsing perfection.' },
           ].map((c, i) => (
@@ -287,7 +287,7 @@ export function ConvergenceSection() {
         </Reveal>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 40 }} className="codeastra-grid-3">
           {[
-            { t: '₹15,000', b: 'Convergence prize shared by the winning integrated teams.' },
+            { t: '₹12,000', b: 'Convergence prize shared by the winning integrated teams.' },
             { t: 'Cross-domain', b: 'Forced collaboration outside your comfort stack.' },
             { t: 'Live proof', b: 'Both integrations demoed, not slideware.' },
           ].map((c, i) => (
@@ -306,10 +306,10 @@ export function ConvergenceSection() {
 
 export function PrizesSection() {
   const tiers = [
-    { p: '🥇 1st Place', a: '₹50,000', d: 'Overall winner best across all five judging criteria.' },
-    { p: '🥈 2nd Place', a: '₹30,000', d: 'Runner-up strongest end-to-end build and demo.' },
+    { p: '🥇 1st Place', a: '₹40,000', d: 'Overall winner best across all five judging criteria.' },
+    { p: '🥈 2nd Place', a: '₹28,000', d: 'Runner-up strongest end-to-end build and demo.' },
     { p: '🥉 3rd Place', a: '₹20,000', d: 'Second runner-up standout execution or innovation.' },
-    { p: '🏆 Convergence', a: '₹15,000', d: 'Best cross-domain integration shared by winning teams.' },
+    { p: '🏆 Convergence', a: '₹12,000', d: 'Best cross-domain integration shared by winning teams.' },
   ];
   const criteria = [
     { k: 'Technical Execution', w: 25 }, { k: 'Problem Understanding', w: 20 },
@@ -319,7 +319,7 @@ export function PrizesSection() {
   return (
     <section id="prizes" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)' }}>
       <div style={wrap}>
-        <Head label="Judging & winning" title={<>₹1,15,000 on the table<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="₹1,00,000 main prize pool (₹50,000 + ₹30,000 + ₹20,000) + ₹15,000 Convergence prize. Live demo in front of the jury no pre-recorded walkthroughs." />
+        <Head label="Judging & winning" title={<>₹1,00,000 on the table<span style={{ color: 'var(--cb-accent)' }}>.</span></>} hint="₹88,000 main prize pool (₹40,000 + ₹28,000 + ₹20,000) + ₹12,000 Convergence prize. Winners also unlock internship and incubation opportunities. Live demo in front of the jury no pre-recorded walkthroughs." />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginTop: 48 }} className="codeastra-grid-4">
           {tiers.map((t, i) => (
             <Reveal key={t.p} delay={i * 0.07}>
@@ -327,6 +327,14 @@ export function PrizesSection() {
                 <p style={{ fontFamily: 'var(--font-utility)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cb-text-dim)', margin: '0 0 10px' }}>{t.p}</p>
                 <h3 style={{ fontSize: '2.4rem', margin: '0 0 10px', color: i === 0 ? 'var(--cb-accent)' : 'var(--cb-text)' }}>{t.a}</h3>
                 <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'var(--cb-text-muted)' }}>{t.d}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 14 }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, border: '1px solid var(--cb-accent)', color: 'var(--cb-accent)', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 8px' }}>
+                    <Briefcase size={11} /> Internship
+                  </span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, border: '1px solid var(--cb-accent)', color: 'var(--cb-accent)', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 8px' }}>
+                    <Rocket size={11} /> Incubation
+                  </span>
+                </div>
               </div>
             </Reveal>
           ))}
@@ -403,7 +411,7 @@ export function RegisterSection() {
             </a>
           </div>
           <p style={{ marginTop: 26, fontFamily: 'var(--font-utility)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cb-text-dim)' }}>
-            ₹1,15,000 total pool · RGIT, Andheri West, Mumbai · 1st week of October
+            ₹1,00,000 total pool · RGIT, Andheri West, Mumbai · 1st week of October
           </p>
         </Reveal>
       </div>
@@ -416,8 +424,9 @@ export function FaqSection() {
     { q: 'Who can participate?', a: 'Students and young developers. Teams qualify through online selection: registration → idea submission → screening → shortlisting.' },
     { q: 'Where and when is it?', a: 'RGIT, Andheri West, Mumbai  1st week of October, under SYNERGY 2027. The hackathon itself is a 24-hour offline sprint.' },
     { q: 'What are the domains?', a: 'Web & Product Development, AI & ML, Cloud Computing & Distributed Systems, and Cybersecurity & Digital Trust.' },
-    { q: 'What is Convergence?', a: 'You are paired with another team preferably from a different domain and must integrate part of each other’s solution. A dedicated ₹15,000 prize rewards the best integration.' },
+    { q: 'What is Convergence?', a: 'You are paired with another team preferably from a different domain and must integrate part of each other’s solution. A dedicated ₹12,000 prize rewards the best integration.' },
     { q: 'How are we judged?', a: 'Live demo + jury Q&A. Technical Execution (25%), Problem Understanding (20%), Innovation (20%), Functionality & Reliability (20%), Impact & Scalability (15%).' },
+    { q: 'What do winners get?', a: 'Cash prizes from the ₹1,00,000 pool, plus internship opportunities with our industry partners and incubation support to take the strongest ideas further.' },
     { q: 'What should we bring?', a: 'Your team, your machines, and a working mindset. Mentorship, technical support and the chaos  we provide those.' },
   ];
   const [open, setOpen] = useState<number | null>(0);
@@ -444,6 +453,53 @@ export function FaqSection() {
             );
           })}
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function ResourcesSection() {
+  return (
+    <section id="resources" style={{ background: 'var(--cb-bg)', color: 'var(--cb-text)', borderTop: '1px solid var(--cb-border)' }}>
+      <div style={wrap}>
+        <Head
+          label="Resources"
+          title={<>Keep everything<span style={{ color: 'var(--cb-accent)' }}>.</span></>}
+          hint="Rulebook, problem statements, the official PPT template and the SYNERGY brochure — download them now or come back anytime."
+        />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 48 }} className="codeastra-grid-2">
+          {codeastraResources.map((r, i) => (
+            <Reveal key={r.href} delay={(i % 2) * 0.07}>
+              <a
+                href={r.href}
+                download
+                style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: 12, ...cardStyle, height: '100%', boxSizing: 'border-box' }}
+              >
+                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <FileText size={22} color="var(--cb-accent)" />
+                  <span style={{ fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cb-text-dim)' }}>{r.kind}</span>
+                </span>
+                <h3 style={{ fontSize: '1.15rem', textTransform: 'uppercase', margin: 0 }}>{r.label}</h3>
+                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'var(--cb-text-muted)' }}>{r.description}</p>
+                <span style={{ marginTop: 'auto', paddingTop: 10, display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 800, fontSize: 12, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--cb-text)' }}>
+                  <Download size={14} /> Download
+                </span>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <div style={{ marginTop: 24 }}>
+            <a
+              href={CODEASTRA_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10, background: 'var(--cb-text)', color: 'var(--cb-bg)', fontWeight: 800, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '15px 24px' }}
+            >
+              <MessageCircle size={16} /> Join the WhatsApp group
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

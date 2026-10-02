@@ -22,7 +22,7 @@ const timeline = [
   { year: '2024', title: 'Hackathons & Shark Tank', description: 'Programmers Date 2.0 (code to impress partners), Code-A-mania 2.0 (12-hr online hackathon), Sharkathon (student Shark Tank India), Bike Expo.' },
   { year: '2025', title: 'Bootcamps, Pitches & Play', description: 'Sharkathon 2.0 (student Shark Tank India), CodeAstra (24-hr offline hackathon), Programmer’s Date 3.0 (pair-coding), Cyberflare, BGMI LAN and a Web Development Bootcamp (hands-on web dev).' },
   { year: '2026', title: 'Archive Flagships Scale Up', description: 'Sharkathon 3.0, BGMI Showdown (LAN tournament), Programmer’s Date 4.0, Blocktrail (Blockchain, Crypto, wallets, Smart Contracts, Scaling), Cyberflare (Cyber Security fundamentals, Linux, network security & tools, ethical hacking, 24-hr CTF), Cyberflare 2.0, CodeAstra (24-hr offline hackathon).' },
-  { year: '2026', title: 'SYNERGY Phase 1', description: 'Campus Cup Season 2 (Free Fire), Predators Energy Drink presents Box Cricket, Cyberflare 3.0, CodeAstra ₹1,15,000 prize pool.' },
+  { year: '2026', title: 'SYNERGY Phase 1', description: 'Campus Cup Season 2 (Free Fire), Predators Energy Drink presents Box Cricket, Cyberflare 3.0, CodeAstra ₹1,00,000 prize pool.' },
 ];
 
 export default function AboutPage() {

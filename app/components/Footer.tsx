@@ -24,7 +24,7 @@ const cols = [
   {
     title: 'Flagships',
     links: [
-      // CODEASTRA hidden for main ABIT launch — { href: '/codeastra', label: 'Codeastra' },
+      { href: '/codeastra', label: 'Codeastra' },
       { href: '/sharkathon', label: 'Sharkathon' },
       { href: '/synergy', label: 'Synergy' },
     ],

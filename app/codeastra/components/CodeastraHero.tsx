@@ -202,8 +202,8 @@ export default function CodeastraHero({ ready }: { ready: boolean }) {
           {[
             ['Date', '1st week of October 2027'],
             ['Venue', 'RGIT, Andheri West, Mumbai'],
-            ['Format', '24 hours · Offline · 8 phases'],
-            ['Prize pool', '₹1,15,000 total'],
+            ['Format', '24 hours · Offline · 7 phases'],
+            ['Prize pool', '₹1,00,000 total'],
           ].map(([k, v], i) => (
             <div
               key={k}
