@@ -130,7 +130,7 @@ export default function Navbar() {
               <img
                 src="/logo.png"
                 alt="ABIT"
-                className="site-pill-logo"
+                className={isCodeastra ? 'site-pill-logo site-pill-logo-codeastra' : 'site-pill-logo'}
                 style={{ height: 20, width: 'auto', display: 'block', filter: 'brightness(0)' }}
               />
             </span>
@@ -439,6 +439,8 @@ export default function Navbar() {
       <style jsx global>{`
         .site-pill-links { display: flex; }
         .site-burger { display: none; }
+        .site-pill-logo-codeastra { filter: brightness(0) invert(1) !important; }
+        [data-theme="light"] .site-pill-logo-codeastra { filter: brightness(0) !important; }
         @media (max-width: 900px) {
           .site-pill-links { display: none !important; }
           .site-pill-cta { display: none !important; }
