@@ -57,7 +57,7 @@ export default function SynergyClient() {
               style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 30 }}
             >
               <a
-                href="/Synergybrochure2026.pdf"
+                href={encodeURI('/pdfs/SYNERGY PHASE 1 BROCHURE _compressed (1).pdf')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-editorial btn-on-dark"
