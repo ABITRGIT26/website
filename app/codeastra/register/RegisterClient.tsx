@@ -10,6 +10,13 @@ import { codeastraResources, CODEASTRA_WHATSAPP_URL } from '../data/resources';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const generateTeamId = () => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let id = '';
+  for (let i = 0; i < 4; i++) id += chars.charAt(Math.floor(Math.random() * chars.length));
+  return `CODE-ABIT-${id}`;
+};
+
 /* ── Going Beyond intro ── */
 function BeyondIntro({ onDone }: { onDone: () => void }) {
   const [phase, setPhase] = useState<'flood' | 'message' | 'lift'>('flood');
@@ -296,12 +303,13 @@ function CheckRow({ checked, onToggle, children }: { checked: boolean; onToggle:
 }
 
 function ResourcesStep({
-  readRules, joinedWa, onReadRules, onJoinedWa,
+  readRules, joinedWa, onReadRules, onJoinedWa, teamId,
 }: {
   readRules: boolean;
   joinedWa: boolean;
   onReadRules: () => void;
   onJoinedWa: () => void;
+  teamId: string;
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -348,6 +356,20 @@ function ResourcesStep({
           I have joined the CodeAstra WhatsApp group.
         </CheckRow>
       </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap', border: '1px solid var(--cb-accent)', background: 'var(--cb-card-bg)', padding: '14px 16px' }}>
+        <span style={{ flex: 1, minWidth: 170 }}>
+          <span style={{ display: 'block', fontFamily: 'var(--font-utility)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--cb-text-dim)' }}>
+            Your team ID
+          </span>
+          <span style={{ display: 'block', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, letterSpacing: '0.08em', color: 'var(--cb-accent)', marginTop: 4 }}>
+            {teamId}
+          </span>
+        </span>
+      </div>
+      <p style={{ margin: '-8px 0 0', fontFamily: 'var(--font-utility)', fontSize: 12, lineHeight: 1.6, color: 'var(--cb-text-dim)' }}>
+        Save this ID — it is submitted along with your registration and used for all further communication.
+      </p>
     </div>
   );
 }
@@ -497,6 +519,13 @@ function RegisterForm() {
     setGateError(false);
   };
 
+  // Team ID is generated on the terms & conditions step instead of on submit.
+  // Entering the step again always generates a fresh ID.
+  useEffect(() => {
+    if (step !== 2) return;
+    setF((p) => ({ ...p, teamId: generateTeamId() }));
+  }, [step]);
+
   const next = (e: React.MouseEvent<HTMLButtonElement>) => {
     // Validate only the currently visible step's fields before advancing
     const form = e.currentTarget.closest('form');
@@ -554,11 +583,8 @@ function RegisterForm() {
     // answered Q1/Q2 that fast, so it must be a ghost/accidental submit.
     if (Date.now() - step6ArrivedAt.current < 1500) return;
     setStatus('loading');
-    // Generate team ID on submit
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let id = '';
-    for (let i = 0; i < 4; i++) id += chars.charAt(Math.floor(Math.random() * chars.length));
-    const teamId = `CODE-ABIT-${id}`;
+    // Team ID is generated on the terms & conditions step; fall back if missing.
+    const teamId = f.teamId || generateTeamId();
     const payload = { ...f, teamId };
     setF((p) => ({ ...p, teamId }));
     try {
@@ -620,6 +646,7 @@ function RegisterForm() {
               joinedWa={joinedWa}
               onReadRules={toggleReadRules}
               onJoinedWa={toggleJoinedWa}
+              teamId={f.teamId}
             />
             {gateError && (
               <p style={{ margin: 0, color: '#DC2626', fontSize: 13 }}>Please confirm both checkboxes to continue.</p>
