@@ -106,7 +106,7 @@ const pastSponsors: Sponsor[] = [
     { name: 'Imperial Overseas', role: 'Foreign Studies Partner', sector: 'Overseas Education Consultancy', logo: '/sponsors/37-imperial-overseas.png' },
     { name: 'TechBairn', role: 'Tech Partner', sector: 'Emerging Tech Training & Upskilling', logo: '/sponsors/38-techbairn.png' },
     { name: 'Uptiq.ai', role: 'AI & Innovation Partner', sector: 'Artificial Intelligence & SaaS Platform', logo: '/sponsors/39-uptiq-ai.jpg' },
-    { name: 'Wyntrix Innovations', role: 'Digital Marketing & IT Solutions Partner', sector: 'Campus Marketing, Event Management & IT Services', logo: '/sponsors/40-wyntrix-innovations.jpg' },
+    { name: 'Wyntrix Innovations', role: 'Internship & Ecosystem Partner', sector: 'Campus Marketing, Event Management & IT Services', logo: '/sponsors/40-wyntrix-innovations.jpg' },
 ];
 
 const sponsorCategories: { title: string; names: string[] }[] = [
