@@ -106,6 +106,7 @@ const pastSponsors: Sponsor[] = [
     { name: 'Imperial Overseas', role: 'Foreign Studies Partner', sector: 'Overseas Education Consultancy', logo: '/sponsors/37-imperial-overseas.png' },
     { name: 'TechBairn', role: 'Tech Partner', sector: 'Emerging Tech Training & Upskilling', logo: '/sponsors/38-techbairn.png' },
     { name: 'Uptiq.ai', role: 'AI & Innovation Partner', sector: 'Artificial Intelligence & SaaS Platform', logo: '/sponsors/39-uptiq-ai.jpg' },
+    { name: 'Wyntrix Innovations', role: 'Digital Marketing & IT Solutions Partner', sector: 'Campus Marketing, Event Management & IT Services', logo: '/sponsors/40-wyntrix-innovations.jpg' },
 ];
 
 const sponsorCategories: { title: string; names: string[] }[] = [
@@ -113,7 +114,7 @@ const sponsorCategories: { title: string; names: string[] }[] = [
     { title: 'Education, Upskilling & Technical Partners', names: ['GeeksforGeeks', 'Coding Ninjas', 'TechBairn', 'Inflow', 'Hacktify', 'Infotech Academy', 'Talenthome Solutions', 'Cloud Counselage', 'Intervue.io', 'Uptiq.ai'] },
     { title: 'Study Abroad & Overseas Education Partners', names: ['Collegepond', 'Vidyalankar', 'Leverage Edu', 'Imperial Overseas', 'North Star Consultancy', 'Riya Study Abroad'] },
     { title: 'Food, Beverage & Dining Partners', names: ["Domino's Pizza", 'Pizza Hut', 'The Belgian Waffle Co.', 'Suraj Lama Momos', 'Black Simba Energy Drink', 'Vold Energy Drinks', 'Cherry & Chocolatte', 'D Lakhani Hospitality'] },
-    { title: 'Media, Marketing & Creative Partners', names: ['VeeFly', 'Watermelon Gang Marketing Agency', "Markin’it", 'The VFX Institute by Visual Birds Studio', 'VS Sahil'] },
+    { title: 'Media, Marketing & Creative Partners', names: ['Wyntrix Innovations', 'VeeFly', 'Watermelon Gang Marketing Agency', "Markin’it", 'The VFX Institute by Visual Birds Studio', 'VS Sahil'] },
     { title: 'Travel, Lifestyle & Allied Services', names: ['Travotic Holidays', 'Mannasrekha Enterprises', 'Moon Thrifts', 'Finance Cafe', 'Vision Trading', 'Temples of India', 'Shivtara Enterprises'] },
 ];
 
@@ -154,7 +155,7 @@ export default function SponsorsPage() {
             <section style={{ padding: '80px 24px', textAlign: 'center' }}>
                 <div style={{ maxWidth: 900, margin: '0 auto' }}>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-                        <span className="mono-meta" style={{ marginBottom: 20, display: 'inline-flex' }}>Sponsors · 39 Partners</span>
+                        <span className="mono-meta" style={{ marginBottom: 20, display: 'inline-flex' }}>Sponsors · 40 Partners</span>
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -163,7 +164,7 @@ export default function SponsorsPage() {
                         Partner with ABIT<span style={{ color: 'var(--accent)' }}>.</span>
                     </motion.h1>
                     <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ color: 'var(--muted)', fontSize: 'clamp(16px, 2vw, 18px)', lineHeight: 1.8, maxWidth: 640, margin: '0 auto' }}>
-                        Reach 500+ passionate RGIT students and connect your brand with the next generation of tech talent. Trusted by 39 sponsors & partners from title sponsors to food, education, media and tech.
+                        Reach 500+ passionate RGIT students and connect your brand with the next generation of tech talent. Trusted by 40 sponsors & partners from title sponsors to food, education, media and tech.
                     </motion.p>
                 </div>
             </section>
@@ -234,7 +235,7 @@ export default function SponsorsPage() {
                     </div>
 
                     <h2 style={{ fontSize: 'clamp(22px, 3vw, 34px)', fontWeight: 900, letterSpacing: '-0.02em', textTransform: 'uppercase', textAlign: 'center', margin: '0 0 12px' }}>
-                        Past Sponsors & Partners 39
+                        Past Sponsors & Partners 40
                     </h2>
                     <p style={{ textAlign: 'center', color: 'var(--muted)', fontSize: 14, margin: '0 0 40px' }}>
                         Association of Budding Information Technocrats (ABIT), RGIT comprehensive roster from ABIT Sponsors archive.
