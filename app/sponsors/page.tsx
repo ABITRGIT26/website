@@ -106,15 +106,15 @@ const pastSponsors: Sponsor[] = [
     { name: 'Imperial Overseas', role: 'Foreign Studies Partner', sector: 'Overseas Education Consultancy', logo: '/sponsors/37-imperial-overseas.png' },
     { name: 'TechBairn', role: 'Tech Partner', sector: 'Emerging Tech Training & Upskilling', logo: '/sponsors/38-techbairn.png' },
     { name: 'Uptiq.ai', role: 'AI & Innovation Partner', sector: 'Artificial Intelligence & SaaS Platform', logo: '/sponsors/39-uptiq-ai.jpg' },
-    { name: 'Wyntrix Innovations', role: 'Internship & Ecosystem Partner', sector: 'Campus Marketing, Event Management & IT Services', logo: '/sponsors/40-wyntrix-innovations.jpg' },
+    { name: 'Wyntrix Innovations', role: 'Internship & Ecosystem Partner', sector: 'Internships & Talent Development', logo: '/sponsors/40-wyntrix-innovations.jpg' },
 ];
 
 const sponsorCategories: { title: string; names: string[] }[] = [
     { title: 'Title Sponsors & Core Corporate Backers', names: ['369 Group of Companies', 'Try Catch Classes', 'RHI Magnesita'] },
-    { title: 'Education, Upskilling & Technical Partners', names: ['GeeksforGeeks', 'Coding Ninjas', 'TechBairn', 'Inflow', 'Hacktify', 'Infotech Academy', 'Talenthome Solutions', 'Cloud Counselage', 'Intervue.io', 'Uptiq.ai'] },
+    { title: 'Education, Upskilling & Technical Partners', names: ['GeeksforGeeks', 'Coding Ninjas', 'TechBairn', 'Inflow', 'Hacktify', 'Infotech Academy', 'Talenthome Solutions', 'Cloud Counselage', 'Intervue.io', 'Uptiq.ai', 'Wyntrix Innovations'] },
     { title: 'Study Abroad & Overseas Education Partners', names: ['Collegepond', 'Vidyalankar', 'Leverage Edu', 'Imperial Overseas', 'North Star Consultancy', 'Riya Study Abroad'] },
     { title: 'Food, Beverage & Dining Partners', names: ["Domino's Pizza", 'Pizza Hut', 'The Belgian Waffle Co.', 'Suraj Lama Momos', 'Black Simba Energy Drink', 'Vold Energy Drinks', 'Cherry & Chocolatte', 'D Lakhani Hospitality'] },
-    { title: 'Media, Marketing & Creative Partners', names: ['Wyntrix Innovations', 'VeeFly', 'Watermelon Gang Marketing Agency', "Markin’it", 'The VFX Institute by Visual Birds Studio', 'VS Sahil'] },
+    { title: 'Media, Marketing & Creative Partners', names: ['VeeFly', 'Watermelon Gang Marketing Agency', "Markin’it", 'The VFX Institute by Visual Birds Studio', 'VS Sahil'] },
     { title: 'Travel, Lifestyle & Allied Services', names: ['Travotic Holidays', 'Mannasrekha Enterprises', 'Moon Thrifts', 'Finance Cafe', 'Vision Trading', 'Temples of India', 'Shivtara Enterprises'] },
 ];
 
